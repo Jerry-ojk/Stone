@@ -1,0 +1,27 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Design.BottomNavigationView" parent="">
+        <item name="itemBackground">?android:attr/selectableItemBackgroundBorderless</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+    <declare-styleable name="MyBottomNavigationView">
+        <attr name="menu" />
+        <attr name="itemIconTint" />
+        <attr name="itemTextColor" />
+        <attr name="itemBackground" />
+        <attr name="elevation" />
+    </declare-styleable>
+
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+</resources>

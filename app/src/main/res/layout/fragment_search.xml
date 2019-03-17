@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:focusable="true"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/search_bg"
+        android:paddingStart="-8dp"
+        android:paddingEnd="-8dp" />
+    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/search_advice"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="40dp" />
+
+    <TextView
+        android:id="@+id/search_back"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/search_bg"
+        android:gravity="center"
+        android:text="返回首页" />
+
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/recycler_history"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_margin="16dp" />-->
+</LinearLayout>
