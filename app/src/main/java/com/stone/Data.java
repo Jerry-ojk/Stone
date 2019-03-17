@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
+//
 public class Data {
     public static final List<Stone> STONE_LIST = new ArrayList<>(56);
 
