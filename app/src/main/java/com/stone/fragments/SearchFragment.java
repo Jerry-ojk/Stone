@@ -17,7 +17,6 @@ import com.stone.R;
 import com.stone.activities.MainActivity;
 import com.stone.adapters.TextAdapter;
 import com.stone.model.Stone;
-import com.stone.model.StoneNotUniformity;
 
 import java.util.ArrayList;
 

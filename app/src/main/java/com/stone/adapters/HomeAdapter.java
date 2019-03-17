@@ -31,9 +31,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public HomeAdapter(Context context) {
         this.context = context;
         listener = v -> {
-            int index = (int) v.getTag();
+            int id = (int) v.getTag();
             Intent intent = new Intent(HomeAdapter.this.context, DetailsActivity.class);
-            intent.putExtra("index", index);
+            intent.putExtra("index", id);
             HomeAdapter.this.context.startActivity(intent);
         };
     }
@@ -61,10 +61,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
-            final int index = position - 1;
-            Stone item = Data.STONE_LIST.get(index);
+            Stone item = Data.STONE_LIST.get(position - 1);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
-            itemHolder.itemView.setTag(index);
+            itemHolder.itemView.setTag(item.id);
             itemHolder.name.setText(item.chaName + "  " + item.formula);
             itemHolder.company.setText(item.crystalSystem + "  " + item.uniformity);
             itemHolder.des.setText(item.features);

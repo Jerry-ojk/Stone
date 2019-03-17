@@ -31,9 +31,9 @@ public class TextAdapter extends RecyclerView.Adapter<TextViewHolder> {
         this.searchFragment = searchFragment;
         this.mainActivity = context;
         listener = v -> {
-            int index = (int) v.getTag();
+            int id = (int) v.getTag();
             Intent intent = new Intent(this.mainActivity, DetailsActivity.class);
-            intent.putExtra("index", index);
+            intent.putExtra("index", id);
             mainActivity.startActivity(intent);
             //this.searchFragment.quit();
         };
@@ -63,7 +63,7 @@ public class TextAdapter extends RecyclerView.Adapter<TextViewHolder> {
     @Override
     public void onBindViewHolder(TextViewHolder holder, int position) {
         Stone stone = list.get(position);
-        holder.itemView.setTag(position);
+        holder.itemView.setTag(stone.id);
         holder.textView.setText(stone.chaName + "  " + stone.engName + "  " + stone.formula);
     }
 

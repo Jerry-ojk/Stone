@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
 //
 public class Data {
     public static final List<Stone> STONE_LIST = new ArrayList<>(56);
@@ -25,7 +26,9 @@ public class Data {
                 //用 | 分割  |需要转义为 \||
                 String[] lines = line.split("\\|");
                 if (lines.length == 18) {
-                    Data.STONE_LIST.add(new StoneNotUniformity(lines));
+                    StoneNotUniformity stone = new StoneNotUniformity(lines);
+                    stone.id = Data.STONE_LIST.size();
+                    Data.STONE_LIST.add(stone);
                     Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
                     Log.i("666", lines.length + "");
@@ -42,7 +45,9 @@ public class Data {
                 //用 | 分割  |需要转义为 \||
                 String[] lines = line.split("\\|");
                 if (lines.length == 13) {
-                    Data.STONE_LIST.add(new StoneUniformity(lines));
+                    StoneUniformity stone = new StoneUniformity(lines);
+                    stone.id = Data.STONE_LIST.size();
+                    Data.STONE_LIST.add(stone);
                     Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
                     Log.i("666", lines.length + "");

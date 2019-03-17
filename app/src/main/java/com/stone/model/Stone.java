@@ -1,7 +1,7 @@
 package com.stone.model;
 
 public class Stone {
-    public int id;
+    public int id = -1;
     public String chaName;
     public String engName;
     //化学式
@@ -28,4 +28,7 @@ public class Stone {
     public String features;
     //主要鉴定特征 Main identification characteristics
     public String mic;
+
+    // 1 代表均质，0代表非均质
+    public int uniformOrNot;
 }
