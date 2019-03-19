@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stone.Data;
@@ -49,6 +48,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecyclerView.ViewHolder holder;
         if (viewType == TYPE_ITEM) {
             View item = LayoutInflater.from(context).inflate(R.layout.item_stone, parent, false);
+            //ImageView imageView= item.findViewById(R.id.item_image);
+            //imageView.getDrawable().getIntrinsicHeight();
             item.setOnClickListener(listener);
             holder = new ItemViewHolder(item);
         } else {
@@ -90,10 +91,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onViewRecycled(RecyclerView.ViewHolder holder) {
-        if (holder instanceof ItemViewHolder) {
-            ItemViewHolder itemHolder = ((ItemViewHolder) holder);
-            itemHolder.image.setImageDrawable(null);
-        }
+//        if (holder instanceof ItemViewHolder) {
+//            ItemViewHolder itemHolder = ((ItemViewHolder) holder);
+//            itemHolder.image.setImageDrawable(null);
+//        }
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -139,14 +140,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        //ImageView image;
         TextView name;
         TextView company;
         TextView des;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.item_image);
+            //image = itemView.findViewById(R.id.item_image);
             name = itemView.findViewById(R.id.item_name);
             des = itemView.findViewById(R.id.item_des);
             company = itemView.findViewById(R.id.item_company);

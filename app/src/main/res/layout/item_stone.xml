@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/item_image"
+        android:src="@drawable/test1"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="10dp" />
