@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.stone.ImageManager;
 import com.stone.R;
 import com.stone.Utils;
 import com.stone.fragments.HomeFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MainActivity", "布局花费" + (System.currentTimeMillis() - a) + "ms");
         recFragment();
         showFragment(R.id.navigation_home);
+        ImageManager.loadImage(0);
     }
 
 

@@ -23,7 +23,6 @@ public class Stone {
     //内反射
     public String internalReflection;
 
-
     //矿物成因产状形态特征及伴生矿物
     public String features;
     //主要鉴定特征 Main identification characteristics

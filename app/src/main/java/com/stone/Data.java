@@ -29,7 +29,7 @@ public class Data {
                     StoneNotUniformity stone = new StoneNotUniformity(lines);
                     stone.id = Data.STONE_LIST.size();
                     Data.STONE_LIST.add(stone);
-                    Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
+                    //Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
                     Log.i("666", lines.length + "");
                 }
@@ -48,7 +48,7 @@ public class Data {
                     StoneUniformity stone = new StoneUniformity(lines);
                     stone.id = Data.STONE_LIST.size();
                     Data.STONE_LIST.add(stone);
-                    Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
+                    //Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
                     Log.i("666", lines.length + "");
                 }
