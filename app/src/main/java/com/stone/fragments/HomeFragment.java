@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stone.Data;
-import com.stone.adapters.HomeAdapter;
 import com.stone.R;
+import com.stone.adapters.HomeAdapter;
 
 
 public class HomeFragment extends Fragment {
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refresh();
+                homeAdapter.notifyDataSetChanged();
                 refresh.setRefreshing(false);
             }
         });
@@ -109,10 +109,8 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void setHint(String hint) {
-        if (hintView != null) {
-            hintView.setText(hint);
-        }
+    public void onImageLoadFinish() {
+        homeAdapter.notifyDataSetChanged();
     }
 
     @Override

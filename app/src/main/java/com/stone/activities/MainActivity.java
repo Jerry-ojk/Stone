@@ -5,7 +5,6 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -20,17 +19,19 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        long a = System.currentTimeMillis();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_main);
-        Log.i("MainActivity", "布局花费" + (System.currentTimeMillis() - a) + "ms");
         recFragment();
         showFragment(R.id.navigation_home);
-        ImageManager.loadImage(0);
+        ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
+            @Override
+            public void onFinish() {
+                homeFragment.onImageLoadFinish();
+            }
+        });
     }
 
 
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Log.i("onPermissionsResult", "grantResults[0] =" + grantResults[0] + " " + "grantResults[1]=" + grantResults[1]);
         switch (requestCode) {
             case 1:
                 if (grantResults[0] == 0 && grantResults[1] == 0) {
@@ -93,5 +93,4 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 }

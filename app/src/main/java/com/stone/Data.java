@@ -24,7 +24,7 @@ public class Data {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //用 | 分割  |需要转义为 \||
-                String[] lines = line.split("\\|");
+                String[] lines = line.split("#");
                 if (lines.length == 18) {
                     StoneNotUniformity stone = new StoneNotUniformity(lines);
                     stone.id = Data.STONE_LIST.size();
@@ -33,7 +33,6 @@ public class Data {
                 } else {
                     Log.i("666", lines.length + "");
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +42,7 @@ public class Data {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 //用 | 分割  |需要转义为 \||
-                String[] lines = line.split("\\|");
+                String[] lines = line.split("#");
                 if (lines.length == 13) {
                     StoneUniformity stone = new StoneUniformity(lines);
                     stone.id = Data.STONE_LIST.size();
@@ -56,5 +55,19 @@ public class Data {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Stone findStoneById(int id) {
+        for (Stone stone : STONE_LIST) {
+            if (stone.id == id) return stone;
+        }
+        return null;
+    }
+
+    public static Stone findStoneByName(String name) {
+        for (Stone stone : STONE_LIST) {
+            if (stone.chaName.equals(name)) return stone;
+        }
+        return null;
     }
 }

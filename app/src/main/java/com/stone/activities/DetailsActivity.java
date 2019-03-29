@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stone.Data;
+import com.stone.ImageManager;
 import com.stone.R;
 import com.stone.model.Stone;
 import com.stone.model.StoneNotUniformity;
@@ -20,6 +23,7 @@ import static android.view.View.GONE;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    private ImageView imageView;
     private TextView tv_chaName;
     private TextView tv_engName;
     private TextView tv_formula;
@@ -59,6 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         final LinearLayout content = findViewById(R.id.com_content);
+        imageView = content.findViewById(R.id.video_player);
         tv_chaName = content.findViewById(R.id.tv_chaName);
         tv_engName = content.findViewById(R.id.tv_engName);
         tv_formula = content.findViewById(R.id.tv_formula);
@@ -86,6 +91,8 @@ public class DetailsActivity extends AppCompatActivity {
             return;
         }
         Stone target = Data.STONE_LIST.get(index);
+        Log.i("666", "进入详情界面，加载" + target.chaName);
+        ImageManager.loadImage(target, imageView);
         StoneNotUniformity stoneNotUniformity = null;
         StoneUniformity stoneUniformity = null;
         if (target instanceof StoneUniformity) {
@@ -125,7 +132,6 @@ public class DetailsActivity extends AppCompatActivity {
             tv_not_unif_Ps.setText(Ps + stoneNotUniformity.Ps);
             tv_not_unif_DAR.setText(DAR + stoneNotUniformity.DAR);
         }
-
     }
 
     @Override

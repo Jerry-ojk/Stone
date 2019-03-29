@@ -30,4 +30,7 @@ public class Stone {
 
     // 1 代表均质，0代表非均质
     public int uniformOrNot;
+
+    public String thumbnailUrl;
+    public String bigImageUrl;
 }
