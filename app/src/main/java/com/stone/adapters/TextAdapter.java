@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.stone.R;
 import com.stone.Utils;
-import com.stone.activities.DetailsActivity;
+import com.stone.activities.StoneActivity;
 import com.stone.activities.MainActivity;
 import com.stone.fragments.SearchFragment;
 import com.stone.model.Stone;
@@ -32,7 +32,7 @@ public class TextAdapter extends RecyclerView.Adapter<TextViewHolder> {
         this.mainActivity = context;
         listener = v -> {
             int id = (int) v.getTag();
-            Intent intent = new Intent(this.mainActivity, DetailsActivity.class);
+            Intent intent = new Intent(this.mainActivity, StoneActivity.class);
             intent.putExtra("index", id);
             mainActivity.startActivity(intent);
             //this.searchFragment.quit();

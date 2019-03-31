@@ -5,39 +5,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.stone.R;
+
+import java.util.ArrayList;
 
 
 /**
  * Created by Jerry on 2017/9/13
  */
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
+public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
+    //ArrayList<>
 
-
-    public ItemAdapter() {
+    public ImageAdapter() {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView name;
-        TextView company;
-        TextView des;
-
         ViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.item_image);
-            name = itemView.findViewById(R.id.item_name);
-            des = itemView.findViewById(R.id.item_des);
-            company = itemView.findViewById(R.id.item_company);
         }
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_stone, parent, false);
+        ImageView imageView = new ImageView(parent.getContext());
+        imageView.setAdjustViewBounds(true);
+        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         return new ViewHolder(view);
     }
 
@@ -47,7 +42,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 1;
     }
 
 }

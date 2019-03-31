@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.stone.Data;
 import com.stone.R;
-import com.stone.adapters.HomeAdapter;
+import com.stone.adapters.StoneListAdapter;
 
 
 public class HomeFragment extends Fragment {
@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment {
     private TextView hintView;
     private RecyclerView recyclerView;
     private LinearLayout searchView;
-    private HomeAdapter homeAdapter;
+    private StoneListAdapter stoneListAdapter;
     private String tag = "HomeFragment";
     //private SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);
 
@@ -52,8 +52,8 @@ public class HomeFragment extends Fragment {
             context = container.getContext();
         }
         Data.loadData(context);
-        homeAdapter = new HomeAdapter(context);
-        recyclerView.setAdapter(homeAdapter);
+        stoneListAdapter = new StoneListAdapter(context);
+        recyclerView.setAdapter(stoneListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
 //        recyclerView.post(new Runnable() {
 //            @Override
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                homeAdapter.notifyDataSetChanged();
+                stoneListAdapter.notifyDataSetChanged();
                 refresh.setRefreshing(false);
             }
         });
@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
 
 
     public void onImageLoadFinish() {
-        homeAdapter.notifyDataSetChanged();
+        stoneListAdapter.notifyDataSetChanged();
     }
 
     @Override

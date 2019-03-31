@@ -31,7 +31,7 @@ public class Data {
                     Data.STONE_LIST.add(stone);
                     //Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
-                    Log.i("666", lines.length + "");
+                    //Log.i("666", lines.length + "");
                 }
             }
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class Data {
                     Data.STONE_LIST.add(stone);
                     //Log.i("666", STONE_LIST.get(STONE_LIST.size() - 1).chaName);
                 } else {
-                    Log.i("666", lines.length + "");
+                    //Log.i("666", lines.length + "");
                 }
             }
         } catch (Exception e) {

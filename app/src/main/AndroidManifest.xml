@@ -40,7 +40,7 @@
             android:name=".activities.SettingsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.DetailsActivity"
+            android:name=".activities.StoneActivity"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" />
 

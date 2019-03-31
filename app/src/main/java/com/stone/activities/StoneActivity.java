@@ -1,12 +1,18 @@
 package com.stone.activities;
 
+import android.app.SharedElementCallback;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +23,18 @@ import com.stone.R;
 import com.stone.model.Stone;
 import com.stone.model.StoneNotUniformity;
 import com.stone.model.StoneUniformity;
+import com.stone.views.PhotoView;
+
+import java.util.List;
+import java.util.Map;
 
 import static android.view.View.GONE;
 
 
-public class DetailsActivity extends AppCompatActivity {
+public class StoneActivity extends AppCompatActivity {
 
-    private ImageView imageView;
+    private PhotoView photoView;
+    private RecyclerView recyclerView;
     private TextView tv_chaName;
     private TextView tv_engName;
     private TextView tv_formula;
@@ -56,14 +67,16 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_stone);
         Toolbar toolbar = findViewById(R.id.com_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        recyclerView = findViewById(R.id.recyclerView);
+
         final LinearLayout content = findViewById(R.id.com_content);
-        imageView = content.findViewById(R.id.video_player);
+        photoView = content.findViewById(R.id.video_player);
         tv_chaName = content.findViewById(R.id.tv_chaName);
         tv_engName = content.findViewById(R.id.tv_engName);
         tv_formula = content.findViewById(R.id.tv_formula);
@@ -87,12 +100,24 @@ public class DetailsActivity extends AppCompatActivity {
 
         int index = getIntent().getIntExtra("index", -1);
         if (index == -1) {
-            Toast.makeText(DetailsActivity.this, "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StoneActivity.this, "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
             return;
         }
         Stone target = Data.STONE_LIST.get(index);
         Log.i("666", "进入详情界面，加载" + target.chaName);
-        ImageManager.loadImage(target, imageView);
+        photoView.setUrl(target.bigImageUrl);
+        ImageManager.loadImage(target, photoView);
+
+//        photoView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                BitmapDrawable bitmapDrawable = ((BitmapDrawable) photoView.getDrawable());
+//                if (bitmapDrawable != null) {
+//                    Bitmap bitmap = bitmapDrawable.getBitmap();
+//                    Log.i("666", bitmap.getWidth() + "x" + bitmap.getHeight() + "-" + bitmap.getByteCount() + "-" + bitmap.getAllocationByteCount());
+//                }
+//            }
+//        });
         StoneNotUniformity stoneNotUniformity = null;
         StoneUniformity stoneUniformity = null;
         if (target instanceof StoneUniformity) {
@@ -132,6 +157,43 @@ public class DetailsActivity extends AppCompatActivity {
             tv_not_unif_Ps.setText(Ps + stoneNotUniformity.Ps);
             tv_not_unif_DAR.setText(DAR + stoneNotUniformity.DAR);
         }
+
+        setEnterSharedElementCallback(new SharedElementCallback() {
+            @Override
+            public void onSharedElementStart(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
+                super.onSharedElementStart(sharedElementNames, sharedElements, sharedElementSnapshots);
+            }
+
+            @Override
+            public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
+                super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
+            }
+
+            @Override
+            public void onRejectSharedElements(List<View> rejectedSharedElements) {
+                super.onRejectSharedElements(rejectedSharedElements);
+            }
+
+            @Override
+            public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
+                super.onMapSharedElements(names, sharedElements);
+            }
+
+            @Override
+            public Parcelable onCaptureSharedElementSnapshot(View sharedElement, Matrix viewToGlobalMatrix, RectF screenBounds) {
+                return super.onCaptureSharedElementSnapshot(sharedElement, viewToGlobalMatrix, screenBounds);
+            }
+
+            @Override
+            public View onCreateSnapshotView(Context context, Parcelable snapshot) {
+                return super.onCreateSnapshotView(context, snapshot);
+            }
+
+            @Override
+            public void onSharedElementsArrived(List<String> sharedElementNames, List<View> sharedElements, OnSharedElementsReadyListener listener) {
+                super.onSharedElementsArrived(sharedElementNames, sharedElements, listener);
+            }
+        });
     }
 
     @Override
