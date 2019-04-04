@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/com_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.StoneActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/com_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/com_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.stone.player.SuperPlayerView
+                android:id="@+id/video_player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.stone.views.PhotoView
+                android:id="@+id/photo_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:transitionName="image" />
+            <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:adjustViewBounds="true" />-->
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/recyclerView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_search"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/tv_chaName_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="中文名称："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_chaName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_engName_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="英文名称："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_engName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_formula_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="化学式："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_formula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_crystal_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="矿物晶系："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_crystal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_uniformity_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="均非性："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_uniformity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_hardness_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/tag_bg"
+                    android:text="硬度："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_hardness"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_reflectivity_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="反射率："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_reflectivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    tools:text="sss" />
+
+                <TextView
+                    android:id="@+id/tv_reflectColor_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/tag_bg"
+                    android:text="反射色："
+                    android:textColor="#000000" />
+
+
+                <TextView
+                    android:id="@+id/tv_reflectColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_DRr_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="反射视旋转色散："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_DRr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_internalReflection_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="内反射："
+                    android:textColor="#000000" />
+
+
+                <TextView
+                    android:id="@+id/tv_internalReflection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="----------------------------------------------------"
+                    android:textColor="#000000" />
+
+
+                <TextView
+                    android:id="@+id/tv_uni_Rr_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="反射视旋转角Rr"
+                    android:textColor="#000000" />
+
+
+                <TextView
+                    android:id="@+id/tv_uni_Rr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="----------------------------------------------------"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ps_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="相符Ps："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_Rs_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="旋向Rs："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_Rs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ar_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="非均质视旋转角Ar："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_DAr_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="非均质视旋转色散DAr："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_DAr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/tv_not_DAR_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_bg"
+                    android:text="反射视旋转色散DAR："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_DAR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/tv_not_doubleReflectColor_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/tag_bg"
+                    android:text="双反射及反射多色性："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_not_doubleReflectColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="----------------------------------------------------"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/tag_bg"
+                    android:text="矿物成因产状形态特征："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_features"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/tag_bg"
+                    android:text="主要鉴定特征："
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_mic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

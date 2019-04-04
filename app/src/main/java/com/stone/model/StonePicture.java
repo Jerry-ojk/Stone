@@ -5,9 +5,11 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class StonePicture extends BmobObject {
     public int id;
+    public String name;
+    public BmobFile video;
     public BmobFile thumbnail;
     public BmobFile bigImage;
-    public String name;
+
 
     public int getId() {
         return id;
@@ -15,6 +17,14 @@ public class StonePicture extends BmobObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BmobFile getThumbnail() {
@@ -33,12 +43,12 @@ public class StonePicture extends BmobObject {
         this.bigImage = bigImage;
     }
 
-
-    public String getName() {
-        return name;
+    public BmobFile getVideo() {
+        return video;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setVideo(BmobFile video) {
+        this.video = video;
     }
+
 }

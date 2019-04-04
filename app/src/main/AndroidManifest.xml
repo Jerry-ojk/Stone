@@ -14,10 +14,10 @@
     <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".MyApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -41,12 +41,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.StoneActivity"
+            android:configChanges="screenSize|keyboard|orientation"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <provider
             android:name="cn.bmob.v3.util.BmobContentProvider"
-            android:authorities="com.stone.BmobContentProvider">
-        </provider>
+            android:authorities="com.stone.BmobContentProvider"/>
     </application>
 </manifest>

@@ -4,8 +4,8 @@ public class StoneUniformity extends Stone {
 
     //反射视旋转角Rr
     public String Rr;
-    //反射视旋转色散DRr
-    public String DRr;
+//    //反射视旋转色散DRr
+//    public String DRr;
 
 
     public StoneUniformity() {

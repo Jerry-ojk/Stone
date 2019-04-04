@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -54,8 +55,10 @@ public class PhotoDialog extends Dialog {
         Context context = getContext();
         window.setLayout(displayMetrics.widthPixels, displayMetrics.heightPixels);
         imageView = new ImageView(context);
+        imageView.setTransitionName("image");
         imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        setContentView(imageView, new ViewGroup.LayoutParams(displayMetrics.widthPixels, displayMetrics.heightPixels));
+        ViewGroup.LayoutParams layoutParams1 = new ViewGroup.LayoutParams(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        setContentView(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +70,7 @@ public class PhotoDialog extends Dialog {
             }
         });
         Glide.with(context).load(url).into(imageView);
-
+        window.setSharedElementEnterTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
+        window.setSharedElementExitTransition(TransitionInflater.from(getContext()).inflateTransition(android.R.transition.move));
     }
 }

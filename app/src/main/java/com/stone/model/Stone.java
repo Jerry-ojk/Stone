@@ -10,10 +10,12 @@ public class Stone {
     public String crystalSystem;
     //均非性
     public String uniformity;
-    //反射率
-    public String reflectivity;
+
     //硬度
     public String hardness;
+
+    //反射率
+    public String reflectivity;
 
     public String reflectColor;
 
@@ -28,9 +30,7 @@ public class Stone {
     //主要鉴定特征 Main identification characteristics
     public String mic;
 
-    // 1 代表均质，0代表非均质
-    public int uniformOrNot;
-
+    public String videoUrl;
     public String thumbnailUrl;
     public String bigImageUrl;
 }

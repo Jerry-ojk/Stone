@@ -1,18 +1,21 @@
 package com.stone.activities;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.stone.ImageManager;
 import com.stone.R;
-import com.stone.Utils;
 import com.stone.fragments.HomeFragment;
 import com.stone.fragments.SearchFragment;
+import com.stone.image.ImageManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recFragment();
         showFragment(R.id.navigation_home);
-        ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
-            @Override
-            public void onFinish() {
-                homeFragment.onImageLoadFinish();
-            }
-        });
+        if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid()) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+        } else {
+            ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
+                @Override
+                public void onFinish() {
+                    homeFragment.onImageLoadFinish();
+                }
+            });
+        }
     }
 
 
@@ -80,17 +87,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case 1:
-                if (grantResults[0] == 0 && grantResults[1] == 0) {
-                    Toast.makeText(this, "你允许了权限", Toast.LENGTH_SHORT).show();
-                    Utils.locateCity(this);
-                } else {
-                    Toast.makeText(this, "你拒绝了权限", Toast.LENGTH_SHORT).show();
-                }
-                break;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 0) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                showToast("授权失败！");
+            } else {
+                ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
+                    @Override
+                    public void onFinish() {
+                        homeFragment.onImageLoadFinish();
+                    }
+                });
+            }
         }
+    }
+
+    public void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

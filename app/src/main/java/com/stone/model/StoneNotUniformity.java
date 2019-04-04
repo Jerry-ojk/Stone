@@ -2,23 +2,22 @@ package com.stone.model;
 
 public class StoneNotUniformity extends Stone {
     public static final String STONE_ID = "STONE_ID";
+    //相符Ps
+    public String Ps;
 
-    //双反射及反射多色性
-    public String doubleReflectColor;
+    //旋向Rs
+    public String Rs;
 
     //非均质视旋转角Ar
     public String Ar;
     //非均质视旋转色散DAr
     public String DAr;
-    //旋向Rs
-    public String Rs;
-    //相符Ps
-    public String Ps;
 
     //反射视旋转色散DAR
     public String DAR;
 
-
+    //双反射及反射多色性
+    public String doubleReflectColor;
 
     public StoneNotUniformity() {
 
