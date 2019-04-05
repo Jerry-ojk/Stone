@@ -2,11 +2,8 @@ package com.stone.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Outline;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +11,10 @@ import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.stone.Data;
 import com.stone.R;
 import com.stone.activities.StoneActivity;
+import com.stone.image.ImageManager;
 import com.stone.model.Stone;
 
 
@@ -74,14 +71,8 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             itemHolder.name.setText(item.chaName + "  " + item.formula);
             itemHolder.company.setText(item.crystalSystem + "  " + item.uniformity);
             itemHolder.des.setText(item.features);
-            if (item.thumbnailUrl != null) {
-                Glide.with(context).load(item.thumbnailUrl).into(itemHolder.image);
-            }
-            BitmapDrawable bitmapDrawable = ((BitmapDrawable) itemHolder.image.getDrawable());
-            if (bitmapDrawable != null) {
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                Log.i("666", bitmap.getWidth() + "x" + bitmap.getHeight() + "-" + bitmap.getByteCount() + "-" + bitmap.getAllocationByteCount());
-            }
+
+            ImageManager.loadThumbnail(item, itemHolder.image);
         }
     }
 

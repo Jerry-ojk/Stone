@@ -23,7 +23,6 @@ public class StoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stone);
         stoneFragment = new StoneFragment(this);
 
-
         int index = getIntent().getIntExtra("index", -1);
         Stone stone = null;
         if (index != -1) {
@@ -46,7 +45,6 @@ public class StoneActivity extends AppCompatActivity {
         if (imageFragment == null) {
             imageFragment = new ImageFragment(this, url);
         }
-
         int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

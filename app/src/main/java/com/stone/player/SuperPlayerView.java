@@ -365,9 +365,10 @@ public class SuperPlayerView extends ViewGroup implements PlayerController {
 
     @Override
     public boolean onPlay(boolean isPlay) {
+        if (mediaPlayer == null) return false;
         if (isPlay && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
-            return true;
+            return false;
         } else if (!isPlay && !mediaPlayer.isPlaying()) {
             mediaPlayer.start();
             return true;

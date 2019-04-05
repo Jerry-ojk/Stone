@@ -3,7 +3,6 @@ package com.stone.player;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -19,9 +18,9 @@ public class FooterView extends View {
     private boolean isTouchZoom = false;
     private boolean isTouchSeek = false;
     private PlayerController controller;
-    private boolean isPlaying = true;
+    private boolean isPlaying = false;
     private boolean isDragging = false;
-    private boolean canDrag = true;
+    private boolean canDrag = false;
     private float lastX = 0;
     private float start;
     private float processLen;
@@ -44,7 +43,7 @@ public class FooterView extends View {
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         textOffset = (fontMetrics.bottom - fontMetrics.top - 6) / 2 - fontMetrics.descent;
         currentTime = "00:00";
-        endTime = "00:00";
+        endTime = "--:--";
         strWidth = paint.measureText(currentTime, 0, currentTime.length());
         start = DPUtils.DP32 + strWidth;
     }
@@ -171,7 +170,7 @@ public class FooterView extends View {
                         isTouchPlay = false;
                     } else if (isTouchZoom) {
                         isTouchZoom = false;
-                    } else if (isTouchSeek) {
+                    } else if (isTouchSeek && canDrag) {
                         isDragging = true;
                     }
                 }
@@ -188,7 +187,7 @@ public class FooterView extends View {
                     }
                     updateProcess();
                 } else if (isTouchPlay) {
-                    if (controller.onPlay(isPlaying)) {
+                    if (controller.onPlay(isPlaying) != isPlaying) {
                         isPlaying = !isPlaying;
                         invalidate();
                     }

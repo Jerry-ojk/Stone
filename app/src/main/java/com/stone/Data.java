@@ -2,7 +2,6 @@ package com.stone;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import com.stone.model.Stone;
 import com.stone.model.StoneNotUniformity;

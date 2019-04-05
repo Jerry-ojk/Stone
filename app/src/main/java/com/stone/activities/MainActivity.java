@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid()) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         } else {
-            ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
+            ImageManager.fillStoneImages(new ImageManager.ImageLoadListener() {
                 @Override
                 public void onFinish() {
                     homeFragment.onImageLoadFinish();
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 showToast("授权失败！");
             } else {
-                ImageManager.loadAndMatchAllImages(new ImageManager.ImageLoadListener() {
+                ImageManager.fillStoneImages(new ImageManager.ImageLoadListener() {
                     @Override
                     public void onFinish() {
                         homeFragment.onImageLoadFinish();
@@ -104,5 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLowMemory() {
+        ImageManager.onLowMemory();
+        super.onLowMemory();
     }
 }
