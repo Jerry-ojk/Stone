@@ -73,8 +73,8 @@ public class SuperPlayerView extends ViewGroup implements PlayerController {
         setFocusableInTouchMode(true);
         requestFocus();
 
-        IjkMediaPlayer.loadLibrariesOnce(null);
-        IjkMediaPlayer.native_profileBegin("libijkplayer.so");
+        //IjkMediaPlayer.loadLibrariesOnce(null);
+        //IjkMediaPlayer.native_profileBegin("libijkplayer.so");
 
         headerView = new HeaderView(context, this);
         headerView.setBackgroundResource(R.drawable.player_top_shadow);

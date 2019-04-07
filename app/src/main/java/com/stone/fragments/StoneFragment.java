@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.transition.Fade;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,14 +53,14 @@ public class StoneFragment extends Fragment {
 
     public StoneFragment(StoneActivity stoneActivity) {
         this.stoneActivity = stoneActivity;
-        setExitTransition(new Fade());
+        //setExitTransition(new Fade());
     }
 
     @Override
     public void onAttach(Context context) {
         stoneActivity = (StoneActivity) context;
         super.onAttach(context);
-        setExitTransition(new Fade());
+        //setExitTransition(new Fade());
     }
 
     public void setStone(Stone stone) {
@@ -87,16 +87,16 @@ public class StoneFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View parent = inflater.inflate(R.layout.fragment_stone, container, false);
-
         if (stone == null) {
             Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
             return parent;
         }
-
-        Toolbar toolbar = parent.findViewById(R.id.com_toolbar);
+        Toolbar toolbar = parent.findViewById(R.id.toolbar_stone);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(v -> stoneActivity.finish());
 
         photoView = parent.findViewById(R.id.photo_view);
-        superPlayerView = parent.findViewById(R.id.video_player);
+        //superPlayerView = parent.findViewById(R.id.video_player);
 
         tv_chaName = parent.findViewById(R.id.tv_chaName);
         tv_engName = parent.findViewById(R.id.tv_engName);
@@ -111,9 +111,7 @@ public class StoneFragment extends Fragment {
         tv_features = parent.findViewById(R.id.tv_features);
         tv_mic = parent.findViewById(R.id.tv_mic);
 
-
-//        Log.i("666", "进入详情界面，加载" + stone.chaName);
-//        Glide.with(stoneActivity).asBitmap().load(stone.bigImageUrl).into(photoView);
+        Log.i("666", "进入详情界面，加载" + stone.chaName);
         photoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +136,9 @@ public class StoneFragment extends Fragment {
         tv_internalReflection.setText(stone.internalReflection);
         tv_features.setText(stone.features);
         tv_mic.setText(stone.mic);
+        Log.i("666","加载图片");
         ImageManager.loadBigImage(stone, photoView);
+        Log.i("666","加载图片w完成");
         if (stone instanceof StoneUniformity) {
             showUniformity((StoneUniformity) stone, parent);
         } else {
@@ -154,35 +154,35 @@ public class StoneFragment extends Fragment {
     }
 
     private void showUniformity(StoneUniformity stone, View parent) {
-        TextView tv_uni_Rr = parent.findViewById(R.id.tv_uni_Rr);
-        TextView tv_not_dRColor = parent.findViewById(R.id.tv_not_doubleReflectColor);
-        TextView tv_not_Ar = parent.findViewById(R.id.tv_not_Ar);
-        TextView tv_not_DAr = parent.findViewById(R.id.tv_not_DAr);
-        TextView tv_not_Rs = parent.findViewById(R.id.tv_not_Rs);
-        TextView tv_not_Ps = parent.findViewById(R.id.tv_not_Ps);
-        TextView tv_not_DAR = parent.findViewById(R.id.tv_not_DAR);
 
-        tv_not_dRColor.setText(stone.Rr);
-        TextView tv_doubleReflectColor = parent.findViewById(R.id.tv_not_doubleReflectColor_tag);
-        tv_doubleReflectColor.setVisibility(GONE);
-        tv_not_dRColor.setVisibility(GONE);
-        tv_not_Ar.setVisibility(GONE);
-        tv_not_DAr.setVisibility(GONE);
-        tv_not_Rs.setVisibility(GONE);
-        tv_not_Ps.setVisibility(GONE);
-        tv_not_DAR.setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_dRColor_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_dRColor).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Ar_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Ar).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_DAr_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_DAr).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Rs_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Rs).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Ps_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_Ps).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_DAR_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_not_DAR).setVisibility(GONE);
+
+        TextView tv_uni_Rr = parent.findViewById(R.id.tv_uni_Rr);
+        tv_uni_Rr.setText(stone.Rr);
     }
 
     private void showNotUniformity(StoneNotUniformity stone, View parent) {
-        TextView tv_uni_Rr = parent.findViewById(R.id.tv_uni_Rr);
-        TextView tv_not_dRColor = parent.findViewById(R.id.tv_not_doubleReflectColor);
+        parent.findViewById(R.id.tv_uni_Rr_tag).setVisibility(GONE);
+        parent.findViewById(R.id.tv_uni_Rr).setVisibility(GONE);
+
+        TextView tv_not_dRColor = parent.findViewById(R.id.tv_not_dRColor);
         TextView tv_not_Ar = parent.findViewById(R.id.tv_not_Ar);
         TextView tv_not_DAr = parent.findViewById(R.id.tv_not_DAr);
         TextView tv_not_Rs = parent.findViewById(R.id.tv_not_Rs);
         TextView tv_not_Ps = parent.findViewById(R.id.tv_not_Ps);
         TextView tv_not_DAR = parent.findViewById(R.id.tv_not_DAR);
 
-        tv_uni_Rr.setVisibility(GONE);
         tv_not_dRColor.setText(stone.doubleReflectColor);
         tv_not_Ar.setText(stone.Ar);
         tv_not_DAr.setText(stone.DAr);
@@ -194,16 +194,18 @@ public class StoneFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putLong("During", superPlayerView.getDuration());
-        outState.putLong("PlayPosition", superPlayerView.getPlayPosition());
-        outState.putFloat("BufferLength", superPlayerView.getBufferLengthPixel());
-        superPlayerView.pause();
+        if (superPlayerView != null) {
+            outState.putLong("During", superPlayerView.getDuration());
+            outState.putLong("PlayPosition", superPlayerView.getPlayPosition());
+            outState.putFloat("BufferLength", superPlayerView.getBufferLengthPixel());
+            superPlayerView.pause();
+        }
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle bundle) {
         super.onViewStateRestored(bundle);
-        if (bundle != null) {
+        if (bundle != null && superPlayerView != null) {
             superPlayerView.setDuration(bundle.getLong("During", 0));
             superPlayerView.setPlayPosition(bundle.getLong("PlayPosition", 0));
             superPlayerView.setBufferLengthPixel(bundle.getFloat("BufferLength", 0f));
@@ -212,13 +214,15 @@ public class StoneFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        superPlayerView.pause();
+        if (superPlayerView != null)
+            superPlayerView.pause();
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
-        superPlayerView.release();
+        if (superPlayerView != null)
+            superPlayerView.release();
         super.onDestroy();
     }
 }

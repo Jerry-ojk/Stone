@@ -31,6 +31,6 @@ public class Stone {
     public String mic;
 
     public String videoUrl;
-    public String thumbnailUrl;
+    public String identifyImageUrl;
     public String bigImageUrl;
 }

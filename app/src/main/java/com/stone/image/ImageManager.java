@@ -19,15 +19,13 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import okhttp3.OkHttpClient;
 
 public class ImageManager {
     private static String imageRoot = Environment.getExternalStorageDirectory() + "/stone_image/";
     private static String bigImageDir = imageRoot + "image";
-    private static String thumbnailDir = imageRoot + "thumbnail";
+    private static String identifyDir = imageRoot + "identify";
     private static ArrayCache thumbnailCache = new ArrayCache(56);
     private static Bitmap bigImageCache = null;
-    private static OkHttpClient okHttpClient;
 
     public interface ImageLoadListener {
         void onFinish();
@@ -46,8 +44,12 @@ public class ImageManager {
                         for (StonePicture picture : list) {
                             Stone stone = Data.findStoneById(picture.id);
                             if (stone != null) {
-                                stone.thumbnailUrl = picture.thumbnail.getUrl();
-                                stone.bigImageUrl = picture.bigImage.getUrl();
+                                if (picture.identifyImage != null) {
+                                    stone.identifyImageUrl = picture.identifyImage.getUrl();
+                                }
+                                if (picture.bigImage != null) {
+                                    stone.bigImageUrl = picture.bigImage.getUrl();
+                                }
                                 BmobFile videoFile = picture.video;
                                 if (videoFile != null) {
                                     stone.videoUrl = videoFile.getUrl();
@@ -70,8 +72,8 @@ public class ImageManager {
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
         } else if (loadLocalThumbnail(getImagePath(stone.chaName, 0), stone.id, imageView) == null) {
-            if (stone.thumbnailUrl != null) {
-                downloadImageAsync(stone.id, stone.thumbnailUrl, getImagePath(stone.chaName, 0), imageView);
+            if (stone.identifyImageUrl != null) {
+                downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
             }
         }
     }
@@ -79,9 +81,9 @@ public class ImageManager {
     public static void loadBigImage(Stone stone, ImageView imageView) {
         if (bigImageCache != null) {
             imageView.setImageBitmap(bigImageCache);
-        } else if (loadLocalBigImage(getImagePath(stone.chaName, 1), imageView) == null) {
+        } else if (loadLocalBigImage(getImagePath(stone.chaName, 0), imageView) == null) {
             if (stone.bigImageUrl != null) {
-                downloadImageAsync(stone.id, stone.thumbnailUrl, getImagePath(stone.chaName, 1), imageView);
+                downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
             }
         }
     }
@@ -118,6 +120,7 @@ public class ImageManager {
     }
 
     private static int calculateSampleSize(int width, int targetWidth) {
+        if (targetWidth < 0) return 1;
         int sampleSize = 1;
         while (width > targetWidth) {
             sampleSize = sampleSize << 1;
@@ -126,17 +129,16 @@ public class ImageManager {
         return sampleSize;
     }
 
-    private static Bitmap loadCacheImage(int index, int type) {
-        if (type == 0) {
-            return thumbnailCache.get(index);
-        } else {
-            return bigImageCache;
-        }
-    }
-
     private static Bitmap loadLocalImage(String path, ImageView imageView) {
         ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        return toBitmap(new File(path), params.width);
+        int width;
+        if (params.width == ViewGroup.LayoutParams.MATCH_PARENT) {
+            width = imageView.getContext().getResources().getDisplayMetrics().widthPixels;
+            Log.i("666", width + "");
+        } else {
+            width = params.width;
+        }
+        return toBitmap(new File(path), width);
     }
 
     private static Bitmap loadLocalBigImage(String path, ImageView imageView) {
@@ -157,11 +159,10 @@ public class ImageManager {
         return bitmap;
     }
 
-
     private static void downloadImageAsync(int index, String url, String path, ImageView imageView) {
-        File fileThumbnail = new File(thumbnailDir);
         File fileBigImage = new File(bigImageDir);
-        if ((fileThumbnail.exists() || fileThumbnail.mkdirs()) && (fileBigImage.exists() || fileBigImage.mkdirs())) {
+        File fileIdentify = new File(identifyDir);
+        if ((fileBigImage.exists() || fileBigImage.mkdirs()) && (fileIdentify.exists() || fileIdentify.mkdirs())) {
             ImageDownloadTask task = new ImageDownloadTask(index, url, path, imageView);
             task.execute();
         }
@@ -169,9 +170,9 @@ public class ImageManager {
 
     public static String getImagePath(String name, int type) {
         if (type == 0) {
-            return thumbnailDir + '/' + name + ".jpg";
-        } else {
             return bigImageDir + '/' + name + ".jpg";
+        } else {
+            return identifyDir + '/' + name + ".jpg";
         }
     }
 

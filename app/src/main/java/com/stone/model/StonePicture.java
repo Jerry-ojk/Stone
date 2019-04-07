@@ -7,7 +7,7 @@ public class StonePicture extends BmobObject {
     public int id;
     public String name;
     public BmobFile video;
-    public BmobFile thumbnail;
+    public BmobFile identifyImage;
     public BmobFile bigImage;
 
 
@@ -27,12 +27,12 @@ public class StonePicture extends BmobObject {
         this.name = name;
     }
 
-    public BmobFile getThumbnail() {
-        return thumbnail;
+    public BmobFile getIdentifyImage() {
+        return identifyImage;
     }
 
-    public void setThumbnail(BmobFile thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setIdentifyImage(BmobFile thumbnail) {
+        this.identifyImage = thumbnail;
     }
 
     public BmobFile getBigImage() {

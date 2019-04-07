@@ -9,8 +9,8 @@
 
     <color name="textColor">#8A000000</color>
     <color name="textColorBlack">#000000</color>
+    <color name="stoneTextColor">#000000</color>
     <color name="colorLight">#aa8b8b8b</color>
-    <color name="colorAccent_Dark">#FF4081</color>
     <color name="error_color_material">#FF4081</color>
 
     <color name="divider">#efefef</color>

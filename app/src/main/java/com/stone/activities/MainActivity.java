@@ -9,6 +9,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.stone.image.ImageManager;
 public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private SearchFragment searchFragment;
+    public static boolean access = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid()) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         } else {
+            access = true;
             ImageManager.fillStoneImages(new ImageManager.ImageLoadListener() {
                 @Override
                 public void onFinish() {
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 showToast("授权失败！");
             } else {
+                access = true;
                 ImageManager.fillStoneImages(new ImageManager.ImageLoadListener() {
                     @Override
                     public void onFinish() {

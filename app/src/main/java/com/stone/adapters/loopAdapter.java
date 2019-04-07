@@ -16,7 +16,7 @@ import com.stone.R;
 
 public class loopAdapter extends RecyclerView.Adapter<loopAdapter.ViewHolder> {
     private Context context;
-    private int[] res = {R.drawable.photo_1, R.drawable.photo_2, R.drawable.photo_3, R.drawable.photo_4, R.drawable.photo_5};
+    private int[] res = {};
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.stone.Data;
 import com.stone.R;
+import com.stone.activities.MainActivity;
 import com.stone.activities.StoneActivity;
 import com.stone.image.ImageManager;
 import com.stone.model.Stone;
@@ -71,8 +72,8 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             itemHolder.name.setText(item.chaName + "  " + item.formula);
             itemHolder.company.setText(item.crystalSystem + "  " + item.uniformity);
             itemHolder.des.setText(item.features);
-
-            ImageManager.loadThumbnail(item, itemHolder.image);
+            if (MainActivity.access)
+                ImageManager.loadThumbnail(item, itemHolder.image);
         }
     }
 
