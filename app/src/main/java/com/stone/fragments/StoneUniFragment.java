@@ -12,10 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stone.R;
+import com.stone.activities.StoneActivity;
 import com.stone.model.Stone;
 import com.stone.model.StoneUniformity;
-import com.stone.player.SuperPlayerView;
-import com.stone.views.PhotoView;
 
 @SuppressLint("ValidFragment")
 public class StoneUniFragment extends StoneFragment {
@@ -23,7 +22,11 @@ public class StoneUniFragment extends StoneFragment {
     private StoneUniformity stone;
 
     public StoneUniFragment() {
+        super();
+    }
 
+    public StoneUniFragment(StoneActivity stoneActivity) {
+        super(stoneActivity);
     }
 
     @Override

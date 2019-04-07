@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stone.R;
+import com.stone.activities.StoneActivity;
 import com.stone.model.StoneNotUniformity;
 
 @SuppressLint("ValidFragment")
@@ -20,6 +21,10 @@ public class StoneUnFragment extends StoneFragment {
 
     public StoneUnFragment() {
 
+    }
+
+    public StoneUnFragment(StoneActivity stoneActivity) {
+        super(stoneActivity);
     }
 
     public void setStone(StoneNotUniformity stone) {

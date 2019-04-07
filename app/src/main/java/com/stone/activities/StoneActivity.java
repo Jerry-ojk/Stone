@@ -1,7 +1,6 @@
 package com.stone.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,13 +12,14 @@ import com.stone.R;
 import com.stone.fragments.ImageFragment;
 import com.stone.fragments.StoneFragment;
 import com.stone.fragments.StoneUnFragment;
+import com.stone.fragments.StoneUniFragment;
 import com.stone.model.Stone;
 import com.stone.model.StoneNotUniformity;
 import com.stone.model.StoneUniformity;
 
 
 public class StoneActivity extends AppCompatActivity {
-    private Fragment stoneFragment;
+    private StoneFragment stoneFragment;
     private ImageFragment imageFragment;
     private Stone stone;
 
@@ -32,12 +32,12 @@ public class StoneActivity extends AppCompatActivity {
         if (index != -1) {
             stone = Data.STONE_LIST.get(index);
             if (stone instanceof StoneUniformity) {
-                StoneFragment fragment = new StoneFragment(this);
-                fragment.setStone((StoneUniformity) stone);
+                StoneFragment fragment = new StoneUniFragment(this);
+                fragment.setStone(stone);
                 stoneFragment = fragment;
             } else if (stone instanceof StoneNotUniformity) {
                 StoneUnFragment fragment = new StoneUnFragment(this);
-                fragment.setStone((StoneNotUniformity) stone);
+                fragment.setStone(stone);
                 stoneFragment = fragment;
             }
         }
@@ -69,11 +69,11 @@ public class StoneActivity extends AppCompatActivity {
         Window window = getWindow();
         //window.getDecorView().setSystemUiVisibility(uiFlags);
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        getSupportFragmentManager().beginTransaction()
-//                .addSharedElement(stoneFragment.getPhotoView(), "image")
-//                .replace(R.id.fragment_root, imageFragment)
-//                .addToBackStack(null)
-//                .commit();
+        getSupportFragmentManager().beginTransaction()
+                .addSharedElement(stoneFragment.getPhotoView(), "image")
+                .replace(R.id.fragment_root, imageFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     public void dismissImage() {
