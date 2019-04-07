@@ -16,14 +16,9 @@ import android.widget.Toast;
 
 import com.stone.R;
 import com.stone.activities.StoneActivity;
-import com.stone.image.ImageManager;
 import com.stone.model.Stone;
-import com.stone.model.StoneNotUniformity;
-import com.stone.model.StoneUniformity;
 import com.stone.player.SuperPlayerView;
 import com.stone.views.PhotoView;
-
-import static android.view.View.GONE;
 
 @SuppressLint("ValidFragment")
 public class StoneFragment extends Fragment {
@@ -86,17 +81,29 @@ public class StoneFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parent = inflater.inflate(R.layout.fragment_stone, container, false);
+        View parent = inflater.inflate(R.layout.fragment_stone_un, container, false);
         if (stone == null) {
             Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
             return parent;
         }
+
         Toolbar toolbar = parent.findViewById(R.id.toolbar_stone);
+        toolbar.setTitle(stone.chaName);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(v -> stoneActivity.finish());
 
         photoView = parent.findViewById(R.id.photo_view);
+        photoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //stoneActivity.showImage(stone.bigImageUrl);
+            }
+        });
+
         //superPlayerView = parent.findViewById(R.id.video_player);
+        if (stone.videoUrl != null) {
+            //superPlayerView.setVideoPath(stone.videoUrl);
+        }
 
         tv_chaName = parent.findViewById(R.id.tv_chaName);
         tv_engName = parent.findViewById(R.id.tv_engName);
@@ -110,20 +117,7 @@ public class StoneFragment extends Fragment {
         tv_internalReflection = parent.findViewById(R.id.tv_internalReflection);
         tv_features = parent.findViewById(R.id.tv_features);
         tv_mic = parent.findViewById(R.id.tv_mic);
-
         Log.i("666", "进入详情界面，加载" + stone.chaName);
-        photoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //stoneActivity.showImage(stone.bigImageUrl);
-            }
-        });
-
-        if (stone.videoUrl != null) {
-            //superPlayerView.setVideoPath(stone.videoUrl);
-        }
-
-        toolbar.setTitle(stone.chaName);
         tv_chaName.setText(stone.chaName);
         tv_engName.setText(stone.engName);
         tv_formula.setText(stone.formula);
@@ -136,14 +130,7 @@ public class StoneFragment extends Fragment {
         tv_internalReflection.setText(stone.internalReflection);
         tv_features.setText(stone.features);
         tv_mic.setText(stone.mic);
-        Log.i("666","加载图片");
-        ImageManager.loadBigImage(stone, photoView);
-        Log.i("666","加载图片w完成");
-        if (stone instanceof StoneUniformity) {
-            showUniformity((StoneUniformity) stone, parent);
-        } else {
-            showNotUniformity((StoneNotUniformity) stone, parent);
-        }
+
 //        Window window = getWindow();
 //        ChangeImageTransform transform = new ChangeImageTransform();
 //        transform.setDuration(1000);
@@ -151,44 +138,6 @@ public class StoneFragment extends Fragment {
 //        //window.setSharedElementEnterTransition(transform);
 //        window.setSharedElementExitTransition(transform);
         return parent;
-    }
-
-    private void showUniformity(StoneUniformity stone, View parent) {
-
-        parent.findViewById(R.id.tv_not_dRColor_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_dRColor).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Ar_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Ar).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_DAr_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_DAr).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Rs_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Rs).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Ps_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_Ps).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_DAR_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_not_DAR).setVisibility(GONE);
-
-        TextView tv_uni_Rr = parent.findViewById(R.id.tv_uni_Rr);
-        tv_uni_Rr.setText(stone.Rr);
-    }
-
-    private void showNotUniformity(StoneNotUniformity stone, View parent) {
-        parent.findViewById(R.id.tv_uni_Rr_tag).setVisibility(GONE);
-        parent.findViewById(R.id.tv_uni_Rr).setVisibility(GONE);
-
-        TextView tv_not_dRColor = parent.findViewById(R.id.tv_not_dRColor);
-        TextView tv_not_Ar = parent.findViewById(R.id.tv_not_Ar);
-        TextView tv_not_DAr = parent.findViewById(R.id.tv_not_DAr);
-        TextView tv_not_Rs = parent.findViewById(R.id.tv_not_Rs);
-        TextView tv_not_Ps = parent.findViewById(R.id.tv_not_Ps);
-        TextView tv_not_DAR = parent.findViewById(R.id.tv_not_DAR);
-
-        tv_not_dRColor.setText(stone.doubleReflectColor);
-        tv_not_Ar.setText(stone.Ar);
-        tv_not_DAr.setText(stone.DAr);
-        tv_not_Rs.setText(stone.Rs);
-        tv_not_Ps.setText(stone.Ps);
-        tv_not_DAR.setText(stone.DAR);
     }
 
 

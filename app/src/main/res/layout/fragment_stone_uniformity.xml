@@ -266,126 +266,13 @@
                 app:layout_constraintStart_toEndOf="@+id/tv_uni_Rr_tag" />
 
             <TextView
-                android:id="@+id/tv_not_Ps_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="相符Ps："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_uni_Rr_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Ps"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Ps_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Ps_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Rs_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="旋向Rs："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Ps_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Rs"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Rs_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Rs_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Ar_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="非均质视旋转角Ar："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Rs" />
-
-            <TextView
-                android:id="@+id/tv_not_Ar"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Ar_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Ar_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_DAr_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="非均质视旋转色散DAr："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Ar" />
-
-            <TextView
-                android:id="@+id/tv_not_DAr"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_DAr_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_DAr_tag" />
-
-
-            <TextView
-                android:id="@+id/tv_not_DAR_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反射视旋转色散DAR："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_DAr" />
-
-            <TextView
-                android:id="@+id/tv_not_DAR"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_DAR_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_DAR_tag" />
-
-
-            <TextView
-                android:id="@+id/tv_not_dRColor_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="双反射及反射多色性："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_DAR" />
-
-            <TextView
-                android:id="@+id/tv_not_dRColor"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_dRColor_tag" />
-
-            <TextView
                 android:id="@+id/tv_features_tag"
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="矿物成因产状形态特征："
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_dRColor" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_uni_Rr" />
 
             <TextView
                 android:id="@+id/tv_features"
@@ -419,8 +306,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_mic_tag" />
-
-
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </LinearLayout>
