@@ -3,6 +3,7 @@ package com.stone.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,12 +17,13 @@ import android.widget.Toast;
 
 import com.stone.R;
 import com.stone.activities.StoneActivity;
+import com.stone.image.ImageManager;
 import com.stone.model.Stone;
 import com.stone.player.SuperPlayerView;
 import com.stone.views.PhotoView;
 
 @SuppressLint("ValidFragment")
-public class StoneFragment extends Fragment {
+public abstract class StoneFragment extends Fragment {
 
     private PhotoView photoView;
     private SuperPlayerView superPlayerView;
@@ -81,11 +83,12 @@ public class StoneFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parent = inflater.inflate(R.layout.fragment_stone_un, container, false);
+        View parent = inflater.inflate(getViewId(), container, false);
         if (stone == null) {
             Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
             return parent;
         }
+
 
         Toolbar toolbar = parent.findViewById(R.id.toolbar_stone);
         toolbar.setTitle(stone.chaName);
@@ -93,6 +96,7 @@ public class StoneFragment extends Fragment {
         toolbar.setNavigationOnClickListener(v -> stoneActivity.finish());
 
         photoView = parent.findViewById(R.id.photo_view);
+        ImageManager.loadBigImage(stone, photoView);
         photoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +144,9 @@ public class StoneFragment extends Fragment {
         return parent;
     }
 
+    @LayoutRes
+    public abstract int getViewId();
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -165,6 +172,7 @@ public class StoneFragment extends Fragment {
     public void onDestroyView() {
         if (superPlayerView != null)
             superPlayerView.pause();
+        ImageManager.clearBigImageCache();
         super.onDestroyView();
     }
 

@@ -1,6 +1,6 @@
 package com.stone.model;
 
-public class StoneUniformity extends Stone {
+public class StoneUniform extends Stone {
 
     //反射视旋转角Rr
     public String Rr;
@@ -8,11 +8,11 @@ public class StoneUniformity extends Stone {
 //    public String DRr;
 
 
-    public StoneUniformity() {
+    public StoneUniform() {
 
     }
 
-    public StoneUniformity(String[] lines) {
+    public StoneUniform(String[] lines) {
         if (lines.length == 13) {
             chaName = lines[0];
             engName = lines[1];

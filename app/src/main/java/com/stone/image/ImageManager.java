@@ -26,6 +26,8 @@ public class ImageManager {
     private static String identifyDir = imageRoot + "identify";
     private static ArrayCache thumbnailCache = new ArrayCache(56);
     private static Bitmap bigImageCache = null;
+    private static String name = null;
+
 
     public interface ImageLoadListener {
         void onFinish();
@@ -79,10 +81,10 @@ public class ImageManager {
     }
 
     public static void loadBigImage(Stone stone, ImageView imageView) {
-        if (bigImageCache != null) {
+        if (bigImageCache != null && stone.chaName.equals(name)) {
             imageView.setImageBitmap(bigImageCache);
         } else if (loadLocalBigImage(getImagePath(stone.chaName, 0), imageView) == null) {
-            if (stone.bigImageUrl != null) {
+            if (stone.identifyImageUrl != null) {
                 downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
             }
         }
@@ -176,7 +178,13 @@ public class ImageManager {
         }
     }
 
+    public static void clearBigImageCache() {
+        bigImageCache = null;
+        name = null;
+    }
+
     public static void onLowMemory() {
         thumbnailCache.clear();
+        clearBigImageCache();
     }
 }

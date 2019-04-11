@@ -11,11 +11,11 @@ import com.stone.Data;
 import com.stone.R;
 import com.stone.fragments.ImageFragment;
 import com.stone.fragments.StoneFragment;
-import com.stone.fragments.StoneUnFragment;
-import com.stone.fragments.StoneUniFragment;
+import com.stone.fragments.StoneUnUniformFragment;
+import com.stone.fragments.StoneUniformFragment;
 import com.stone.model.Stone;
-import com.stone.model.StoneNotUniformity;
-import com.stone.model.StoneUniformity;
+import com.stone.model.StoneUnUniform;
+import com.stone.model.StoneUniform;
 
 
 public class StoneActivity extends AppCompatActivity {
@@ -31,12 +31,12 @@ public class StoneActivity extends AppCompatActivity {
         int index = getIntent().getIntExtra("index", -1);
         if (index != -1) {
             stone = Data.STONE_LIST.get(index);
-            if (stone instanceof StoneUniformity) {
-                StoneFragment fragment = new StoneUniFragment(this);
+            if (stone instanceof StoneUniform) {
+                StoneFragment fragment = new StoneUniformFragment(this);
                 fragment.setStone(stone);
                 stoneFragment = fragment;
-            } else if (stone instanceof StoneNotUniformity) {
-                StoneUnFragment fragment = new StoneUnFragment(this);
+            } else if (stone instanceof StoneUnUniform) {
+                StoneUnUniformFragment fragment = new StoneUnUniformFragment(this);
                 fragment.setStone(stone);
                 stoneFragment = fragment;
             }

@@ -1,6 +1,6 @@
 package com.stone.model;
 
-public class StoneNotUniformity extends Stone {
+public class StoneUnUniform extends Stone {
     public static final String STONE_ID = "STONE_ID";
     //相符Ps
     public String Ps;
@@ -19,15 +19,15 @@ public class StoneNotUniformity extends Stone {
     //双反射及反射多色性
     public String doubleReflectColor;
 
-    public StoneNotUniformity() {
+    public StoneUnUniform() {
 
     }
 
-    public StoneNotUniformity(int id) {
+    public StoneUnUniform(int id) {
         this.id = id;
     }
 
-    public StoneNotUniformity(String[] lines) {
+    public StoneUnUniform(String[] lines) {
         if (lines.length == 18) {
             chaName = lines[0];
             engName = lines[1];

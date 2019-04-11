@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.stone.model.Stone;
-import com.stone.model.StoneNotUniformity;
-import com.stone.model.StoneUniformity;
+import com.stone.model.StoneUnUniform;
+import com.stone.model.StoneUniform;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ public class Data {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] lines = line.split("#");
                 if (lines.length == 18) {
-                    StoneNotUniformity stone = new StoneNotUniformity(lines);
+                    StoneUnUniform stone = new StoneUnUniform(lines);
                     stone.id = Data.STONE_LIST.size();
                     Data.STONE_LIST.add(stone);
                 }
@@ -37,7 +37,7 @@ public class Data {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] lines = line.split("#");
                 if (lines.length == 13) {
-                    StoneUniformity stone = new StoneUniformity(lines);
+                    StoneUniform stone = new StoneUniform(lines);
                     stone.id = Data.STONE_LIST.size();
                     Data.STONE_LIST.add(stone);
                 }
@@ -45,6 +45,17 @@ public class Data {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static StoneUnUniform parseStoneUnUniform(String line) {
+        String[] lines = line.split("#");
+        StoneUnUniform stone = null;
+        if (lines.length == 18) {
+            stone = new StoneUnUniform(lines);
+            stone.id = Data.STONE_LIST.size();
+            Data.STONE_LIST.add(stone);
+        }
+        return stone;
     }
 
     public static Stone findStoneById(int id) {

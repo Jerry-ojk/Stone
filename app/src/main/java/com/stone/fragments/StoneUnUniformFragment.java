@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,30 +13,38 @@ import android.widget.Toast;
 
 import com.stone.R;
 import com.stone.activities.StoneActivity;
-import com.stone.model.StoneNotUniformity;
+import com.stone.model.Stone;
+import com.stone.model.StoneUnUniform;
 
 @SuppressLint("ValidFragment")
-public class StoneUnFragment extends StoneFragment {
+public class StoneUnUniformFragment extends StoneFragment {
 
-    private StoneNotUniformity stone;
+    private StoneUnUniform stone;
 
-    public StoneUnFragment() {
+    public StoneUnUniformFragment() {
 
     }
 
-    public StoneUnFragment(StoneActivity stoneActivity) {
+    public StoneUnUniformFragment(StoneActivity stoneActivity) {
         super(stoneActivity);
     }
 
-    public void setStone(StoneNotUniformity stone) {
-        this.stone = stone;
+    @Override
+    public void setStone(Stone stone) {
+        super.setStone(stone);
+        this.stone = (StoneUnUniform) stone;
     }
 
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_stone_un_uniform;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View parent = super.onCreateView(inflater, container, savedInstanceState);
+        Log.i("666", "" + container.getHeight());
 
         if (stone == null) {
             Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
@@ -56,5 +65,11 @@ public class StoneUnFragment extends StoneFragment {
         tv_not_Ps.setText(stone.Ps);
         tv_not_DAR.setText(stone.DAR);
         return parent;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.i("666", "" + view.getHeight());
     }
 }

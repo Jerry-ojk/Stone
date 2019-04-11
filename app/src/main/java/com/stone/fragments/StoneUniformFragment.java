@@ -14,27 +14,31 @@ import android.widget.Toast;
 import com.stone.R;
 import com.stone.activities.StoneActivity;
 import com.stone.model.Stone;
-import com.stone.model.StoneUniformity;
+import com.stone.model.StoneUniform;
 
 @SuppressLint("ValidFragment")
-public class StoneUniFragment extends StoneFragment {
+public class StoneUniformFragment extends StoneFragment {
 
-    private StoneUniformity stone;
+    private StoneUniform stone;
 
-    public StoneUniFragment() {
+    public StoneUniformFragment() {
         super();
     }
 
-    public StoneUniFragment(StoneActivity stoneActivity) {
+    public StoneUniformFragment(StoneActivity stoneActivity) {
         super(stoneActivity);
     }
 
     @Override
     public void setStone(Stone stone) {
         super.setStone(stone);
-        this.stone = (StoneUniformity) (stone);
+        this.stone = (StoneUniform) (stone);
     }
 
+    @Override
+    public int getViewId() {
+        return R.layout.fragment_stone_uniform;
+    }
 
     @Nullable
     @Override
