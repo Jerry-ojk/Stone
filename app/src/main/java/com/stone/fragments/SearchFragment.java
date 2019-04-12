@@ -48,12 +48,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        view.findViewById(R.id.search_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quit();
-            }
-        });
+        view.findViewById(R.id.iv_back).setOnClickListener(v -> quit());
         initViews(view);
         return view;
     }

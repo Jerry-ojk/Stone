@@ -59,12 +59,12 @@ public class ImageManager {
                             }
                         }
                         //downloadAllImages();
-                        if (loadListener != null)
-                            loadListener.onFinish();
                     }
                 } else {
                     e.printStackTrace();
                 }
+                if (loadListener != null)
+                    loadListener.onFinish();
             }
         });
     }
