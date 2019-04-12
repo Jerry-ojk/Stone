@@ -1,10 +1,10 @@
 package com.stone.activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.stone.Data;
@@ -57,20 +57,20 @@ public class StoneActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showImage(String url) {
+    public void showImage(Bitmap bitmap) {
         if (imageFragment == null) {
-            imageFragment = new ImageFragment(this, url);
+            imageFragment = new ImageFragment(this, bitmap);
         }
-        int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        Window window = getWindow();
+//        int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        //Window window = getWindow();
         //window.getDecorView().setSystemUiVisibility(uiFlags);
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportFragmentManager().beginTransaction()
-                .addSharedElement(stoneFragment.getPhotoView(), "image")
+                //.addSharedElement(stoneFragment.getPhotoView(), "image")
                 .replace(R.id.fragment_root, imageFragment)
                 .addToBackStack(null)
                 .commit();

@@ -97,12 +97,7 @@ public abstract class StoneFragment extends Fragment {
 
         photoView = parent.findViewById(R.id.photo_view);
         ImageManager.loadBigImage(stone, photoView);
-        photoView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //stoneActivity.showImage(stone.bigImageUrl);
-            }
-        });
+        photoView.setOnClickListener(v -> stoneActivity.showImage(ImageManager.getBitmapFromImageView(photoView)));
 
         //superPlayerView = parent.findViewById(R.id.video_player);
         if (stone.videoUrl != null) {

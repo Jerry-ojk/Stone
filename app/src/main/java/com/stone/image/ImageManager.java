@@ -2,6 +2,7 @@ package com.stone.image;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Environment;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -124,7 +125,7 @@ public class ImageManager {
     private static int calculateSampleSize(int width, int targetWidth) {
         if (targetWidth < 0) return 1;
         int sampleSize = 1;
-        while (width > targetWidth) {
+        while (width > 1.6 * targetWidth) {
             sampleSize = sampleSize << 1;
             width = width >> 1;
         }
@@ -186,5 +187,9 @@ public class ImageManager {
     public static void onLowMemory() {
         thumbnailCache.clear();
         clearBigImageCache();
+    }
+
+    public static Bitmap getBitmapFromImageView(ImageView imageView) {
+        return ((BitmapDrawable) imageView.getDrawable()).getBitmap();
     }
 }
