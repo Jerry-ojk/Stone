@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment {
             SearchFragment searchFragment = new SearchFragment();
             searchFragment.setHint(hintView.getText().toString());
             transaction.add(R.id.fragment_main, searchFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
     }
