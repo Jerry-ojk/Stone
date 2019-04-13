@@ -35,7 +35,7 @@ public class TextAdapter extends RecyclerView.Adapter<TextViewHolder> {
             Intent intent = new Intent(this.mainActivity, StoneActivity.class);
             intent.putExtra("index", id);
             mainActivity.startActivity(intent);
-            //this.searchFragment.quit();
+            //this.searchFragment.exit();
         };
     }
 

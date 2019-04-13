@@ -1,7 +1,7 @@
 package com.stone.fragments;
 
+import android.animation.Animator;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.stone.Data;
 import com.stone.R;
@@ -48,23 +50,45 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        view.findViewById(R.id.iv_back).setOnClickListener(v -> quit());
+        view.findViewById(R.id.iv_back).setOnClickListener(v -> exitWithAnimation());
         initViews(view);
         return view;
     }
 
-    public void quit() {
+    public void exitWithAnimation() {
+        //ObjectAnimator objectAnimator = ObjectAnimator.ofFloat();
         searchView.clearFocus();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.remove(SearchFragment.this);
-        transaction.commit();
+        mainActivity.onSearchFragmentDestroy();
+        ViewPropertyAnimator animator = getView().animate().alpha(0);
+        animator.setDuration(150);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                getFragmentManager().popBackStack();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        animator.start();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         searchView.clearFocus();
-        mainActivity.showBottom();
         mainActivity = null;
     }
 

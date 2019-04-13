@@ -9,7 +9,6 @@ import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -58,15 +57,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (searchFragment != null) {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.remove(searchFragment);
-            transaction.commit();
+            searchFragment.exitWithAnimation();
         } else {
             super.onBackPressed();
         }
     }
 
-    public void showBottom() {
+    public void onSearchFragmentDestroy() {
         //navigation.setVisibility(View.VISIBLE);
         searchFragment = null;
     }

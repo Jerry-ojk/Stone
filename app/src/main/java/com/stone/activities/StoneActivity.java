@@ -72,8 +72,8 @@ public class StoneActivity extends AppCompatActivity {
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         imageFragment.setSharedElementEnterTransition(new ChangeImageTransform());
-        //imageFragment.setExitTransition(new Fade());
-        imageFragment.setEnterTransition(new Fade());
+        stoneFragment.setExitTransition(new Fade());
+        stoneFragment.setEnterTransition(new Fade());
         imageFragment.setSharedElementReturnTransition(new ChangeImageTransform());
 
         getSupportFragmentManager().beginTransaction()

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_margin="4dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="2dp"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -10,9 +13,10 @@
         android:id="@+id/item_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="4dp" />
+        android:layout_margin="2dp" />
 
     <LinearLayout
+        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/item_image"
@@ -31,7 +35,9 @@
             android:id="@+id/item_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:singleLine="true" />
 
         <TextView
@@ -45,8 +51,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
+        android:layout_below="@id/ll_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
         android:background="@color/divider" />
 </RelativeLayout>

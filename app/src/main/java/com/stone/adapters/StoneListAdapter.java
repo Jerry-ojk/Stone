@@ -65,7 +65,7 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
-            Stone item = Data.STONE_LIST.get(position - 1);
+            Stone item = Data.STONE_LIST.get(position);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.itemView.setTag(item.id);
 
@@ -79,16 +79,12 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
-        return position == 0 ? TYPE_HEADER : TYPE_ITEM;
+        return TYPE_ITEM;
     }
 
     @Override
     public int getItemCount() {
-        if (Data.STONE_LIST == null) {
-            return 1;
-        } else {
-            return Data.STONE_LIST.size() + 1;
-        }
+        return Data.STONE_LIST.size();
     }
 
     @Override

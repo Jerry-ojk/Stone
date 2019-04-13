@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +26,7 @@ public class HomeFragment extends Fragment {
     private SwipeRefreshLayout refresh;
     private TextView hintView;
     private RecyclerView recyclerView;
-    private LinearLayout searchView;
+    private FrameLayout searchView;
     private StoneListAdapter stoneListAdapter;
     private String tag = "HomeFragment";
     //private SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);

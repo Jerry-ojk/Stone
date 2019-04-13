@@ -8,7 +8,7 @@
     android:focusable="true"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/colorPrimary"
@@ -19,8 +19,10 @@
             android:id="@+id/iv_back"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:src="@drawable/ic_arrow_back" />
 
@@ -29,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_gravity="center"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="48dp"
             android:layout_marginEnd="48dp"
             android:background="@drawable/bg_search"
             android:paddingStart="-8dp"
@@ -39,11 +41,13 @@
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="-42dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="6dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:src="@drawable/ic_filter" />
-    </LinearLayout>
+    </FrameLayout>
     <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />-->
     <!--<android.support.v7.widget.RecyclerView-->
     <!--android:id="@+id/search_advice"-->
@@ -55,5 +59,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp" />
 </LinearLayout>
