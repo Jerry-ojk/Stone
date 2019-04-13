@@ -2,9 +2,10 @@ package com.stone.activities;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.transition.ChangeImageTransform;
+import android.support.transition.Fade;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.stone.Data;
@@ -69,8 +70,14 @@ public class StoneActivity extends AppCompatActivity {
         //Window window = getWindow();
         //window.getDecorView().setSystemUiVisibility(uiFlags);
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        imageFragment.setSharedElementEnterTransition(new ChangeImageTransform());
+        //imageFragment.setExitTransition(new Fade());
+        imageFragment.setEnterTransition(new Fade());
+        imageFragment.setSharedElementReturnTransition(new ChangeImageTransform());
+
         getSupportFragmentManager().beginTransaction()
-                //.addSharedElement(stoneFragment.getPhotoView(), "image")
+                .addSharedElement(stoneFragment.getPhotoView(), "image_stone")
                 .replace(R.id.fragment_root, imageFragment)
                 .addToBackStack(null)
                 .commit();
