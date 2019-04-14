@@ -17,7 +17,7 @@ public class Data {
     public static final List<Stone> STONE_LIST = new ArrayList<>(56);
 
     public static void loadData(Context context) {
-        try (InputStream inputStream = context.getAssets().open("ununiformity.csv", AssetManager.ACCESS_STREAMING);
+        try (InputStream inputStream = context.getAssets().open("ununiform.csv", AssetManager.ACCESS_STREAMING);
              BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -31,7 +31,7 @@ public class Data {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try (InputStream inputStream = context.getAssets().open("uniformity.csv", AssetManager.ACCESS_STREAMING);
+        try (InputStream inputStream = context.getAssets().open("uniform.csv", AssetManager.ACCESS_STREAMING);
              BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {

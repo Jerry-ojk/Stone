@@ -184,6 +184,7 @@ public class ImageManager {
         name = null;
     }
 
+    //低内存时准备回收bitmap空间
     public static void onLowMemory() {
         thumbnailCache.clear();
         clearBigImageCache();

@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.stone.R;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,6 +33,12 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
         this.path = path;
         this.imageView = imageView;
     }
+
+    @Override
+    protected void onPreExecute() {
+        imageView.setImageResource(R.drawable.ic_empty_photo);
+    }
+
     //private OkHttpClient okHttpClient;
 
     @Override
@@ -89,6 +97,8 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
         if (bitmap != null) {
             ImageManager.putThumbnailCache(index, bitmap);
             imageView.setImageBitmap(bitmap);
+        } else {
+            imageView.setImageResource(R.drawable.ic_empty_photo);
         }
         imageView = null;
     }

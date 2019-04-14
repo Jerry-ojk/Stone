@@ -1,63 +1,60 @@
 package com.stone.adapters;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 /**
  * Created by Jerry on 2017/9/29
  */
 
-public class ConditionAdapter extends RecyclerView.Adapter<ConditionAdapter.ViewHolder> {
-    private Context context;
-    private int layoutId;
-    private int textViewId;
-    private int imageViewId;
-    private String[] titleArray;
-    private int[] imageIdArray;
+public class ConditionAdapter extends BaseAdapter {
+
+    private String[] items;
+
+    public ConditionAdapter(String[] items) {
+        this.items = items;
+    }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        ViewHolder(View parent) {
-            super(parent);
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        TextView view;
+        if (convertView == null) {
+            view = new TextView(parent.getContext());
+            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+                    , ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(12, 4, 12, 4);
+            view.setLayoutParams(params);
+            view.setTextSize(16);
+            view.setGravity(Gravity.CENTER);
+        } else {
+            view = (TextView) convertView;
         }
-
-        ImageView imageView;
-        TextView textView;
-    }
-
-    public ConditionAdapter(Context context, int layoutId, int textViewId, int imageViewId, String[] titleArray, int[] imageIdArray) {
-        this.context = context;
-        this.layoutId = layoutId;
-        this.textViewId = textViewId;
-        this.imageViewId = imageViewId;
-        this.titleArray = titleArray;
-        this.imageIdArray = imageIdArray;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
-        return null;
+        view.setText(items[position]);
+        return view;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return getDropDownView(position, convertView, parent);
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getCount() {
+        return items.length;
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+    public Object getItem(int position) {
+        return items[position];
     }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
 }

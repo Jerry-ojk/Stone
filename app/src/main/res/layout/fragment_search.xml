@@ -39,6 +39,7 @@
             app:goIcon="@null" />
 
         <ImageView
+            android:id="@+id/iv_condition"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_gravity="end"

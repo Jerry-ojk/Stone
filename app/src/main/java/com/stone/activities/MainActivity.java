@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -29,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_main);
         recFragment();
-        showFragment(R.id.navigation_home);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        if (homeFragment == null) {
+            homeFragment = new HomeFragment();
+            transaction.add(R.id.fragment_main, homeFragment, "homeFragment").commit();
+        } else {
+            transaction.show(homeFragment).commit();
+        }
         if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, android.os.Process.myPid(), android.os.Process.myUid()) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         } else {
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    //恢复Fragments
     private void recFragment() {
         FragmentManager manager = getFragmentManager();
         homeFragment = (HomeFragment) manager.findFragmentByTag("homeFragment");
@@ -63,28 +68,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //在SearchFragment退出时调用
     public void onSearchFragmentDestroy() {
         //navigation.setVisibility(View.VISIBLE);
         searchFragment = null;
     }
 
-    //参数是点击的item的id
-    private void showFragment(@IdRes int itemId) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        switch (itemId) {
-            case R.id.navigation_home:
-                if (homeFragment == null) {
-                    homeFragment = new HomeFragment();
-                    transaction.add(R.id.fragment_main, homeFragment, "homeFragment");
-                } else {
-                    transaction.show(homeFragment);
-                }
-                break;
-            default:
-                break;
-        }
-        transaction.commit();
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -109,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onLowMemory() {
+        //低内存时准备回收bitmap空间
         ImageManager.onLowMemory();
         super.onLowMemory();
     }

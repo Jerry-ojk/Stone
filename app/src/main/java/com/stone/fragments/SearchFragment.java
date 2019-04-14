@@ -3,6 +3,7 @@ package com.stone.fragments;
 import android.animation.Animator;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.stone.Data;
 import com.stone.R;
+import com.stone.activities.ConditionActivity;
 import com.stone.activities.MainActivity;
 import com.stone.adapters.TextAdapter;
 import com.stone.model.Stone;
@@ -27,10 +29,7 @@ public class SearchFragment extends Fragment {
     private MainActivity mainActivity;
     private SearchView searchView;
     private RecyclerView advice;
-
     private ArrayList<Stone> list = new ArrayList<>();
-
-    private String tag = "SearchFragment";
     private TextAdapter adapter;
 
     @Override
@@ -39,6 +38,7 @@ public class SearchFragment extends Fragment {
         //获取到mainActivity的引用
         mainActivity = (MainActivity) context;
     }
+
 
     public void setHint(String hint) {
         if (searchView != null) {
@@ -50,13 +50,19 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        //点击退出
         view.findViewById(R.id.iv_back).setOnClickListener(v -> exitWithAnimation());
+        //点击打开高级搜索界面
+        view.findViewById(R.id.iv_condition).setOnClickListener(
+                v -> mainActivity.startActivity(new Intent(mainActivity, ConditionActivity.class)));
         initViews(view);
         return view;
     }
 
+    /**
+     * 带动画效果退出
+     */
     public void exitWithAnimation() {
-        //ObjectAnimator objectAnimator = ObjectAnimator.ofFloat();
         searchView.clearFocus();
         mainActivity.onSearchFragmentDestroy();
         ViewPropertyAnimator animator = getView().animate().alpha(0);
@@ -70,6 +76,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                //动画结束时退出
                 getFragmentManager().popBackStack();
             }
 
@@ -85,12 +92,6 @@ public class SearchFragment extends Fragment {
         animator.start();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        searchView.clearFocus();
-        mainActivity = null;
-    }
 
     private void initViews(View parent) {
         searchView = parent.findViewById(R.id.searchView);
@@ -134,6 +135,11 @@ public class SearchFragment extends Fragment {
         advice.setLayoutManager(manager);
     }
 
+
+    /**
+     * 输入key后搜索并刷新界面显示结果
+     * @param key 输入的关键字
+     */
     public void searchAndRefresh(String key) {
         list.clear();
         if (key != null && key.length() > 0) {
@@ -146,5 +152,13 @@ public class SearchFragment extends Fragment {
             }
         }
         adapter.refresh(list);
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        searchView.clearFocus();
+        mainActivity = null;
     }
 }

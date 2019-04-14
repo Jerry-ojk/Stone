@@ -18,5 +18,5 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="56dp"-->
         <!--android:layout_marginTop="-56dp"-->
-        <!--app:menu="@menu/navigation_main" />-->
+        <!--app:menu="@menu/menu_home" />-->
 </LinearLayout>

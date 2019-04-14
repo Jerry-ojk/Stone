@@ -13,11 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.stone.Data;
 import com.stone.R;
+import com.stone.activities.MainActivity;
 import com.stone.adapters.StoneListAdapter;
 
 
@@ -29,17 +32,13 @@ public class HomeFragment extends Fragment {
     private FrameLayout searchView;
     private StoneListAdapter stoneListAdapter;
     private String tag = "HomeFragment";
-    //private SimpleDateFormat format = new SimpleDateFormat("MM月dd日 HH:mm", Locale.CHINA);
-
-    //private Retrofit retrofit;
-    //private SortedList.Callback<ComInfoBean> callback;
-
-    private Context context;
+    private MainActivity activity;
+    private PopupMenu popupMenu;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context = context;
+        this.activity = (MainActivity) context;
     }
 
 
@@ -48,30 +47,41 @@ public class HomeFragment extends Fragment {
         long a = System.currentTimeMillis();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.home_rec);
-        if (context == null) {
-            context = container.getContext();
+        ImageView iv_menu = view.findViewById(R.id.iv_menu);
+        iv_menu.setOnClickListener(v -> {
+            if (popupMenu == null) {
+                popupMenu = new PopupMenu(activity, v);
+                popupMenu.inflate(R.menu.menu_home);
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.menu_exit:
+                            activity.finish();
+                            break;
+                    }
+                    return true;
+                });
+            }
+            popupMenu.show();
+        });
+        if (activity == null) {
+            activity = (MainActivity) container.getContext();
         }
-        Data.loadData(context);
-        stoneListAdapter = new StoneListAdapter(context);
+        Data.loadData(activity);
+        stoneListAdapter = new StoneListAdapter(activity);
         recyclerView.setAdapter(stoneListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
-//        recyclerView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                refresh();
-//            }
-//        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
 
         initSearchView(view);
         initScrollView(view);
 
         hintView = view.findViewById(R.id.hint_home);
         Log.i("HomeFragment", "布局花费" + (System.currentTimeMillis() - a) + "ms");
+
         return view;
     }
 
     private void refresh() {
-        Toast.makeText(context, "刷新失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "刷新失败", Toast.LENGTH_SHORT).show();
     }
 
     private void initScrollView(View parent) {
@@ -111,7 +121,8 @@ public class HomeFragment extends Fragment {
 
 
     public void onImageLoadFinish() {
-        stoneListAdapter.notifyDataSetChanged();
+        if (stoneListAdapter != null)
+            stoneListAdapter.notifyDataSetChanged();
     }
 
     @Override
