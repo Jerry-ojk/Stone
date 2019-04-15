@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.stone.Data;
+import com.stone.R;
 import com.stone.model.Stone;
 import com.stone.model.StonePicture;
 
@@ -74,7 +75,10 @@ public class ImageManager {
         Bitmap bitmap = thumbnailCache.get(stone.id);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
-        } else if (loadLocalThumbnail(getImagePath(stone.chaName, 0), stone.id, imageView) == null) {
+            return;
+        }
+        imageView.setImageResource(R.drawable.ic_empty_photo);
+        if (loadLocalThumbnail(getImagePath(stone.chaName, 0), stone.id, imageView) == null) {
             if (stone.identifyImageUrl != null) {
                 downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
             }

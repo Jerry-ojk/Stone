@@ -68,7 +68,6 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             Stone item = Data.STONE_LIST.get(position);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.itemView.setTag(item.id);
-
             itemHolder.name.setText(item.chaName + "  " + item.formula);
             itemHolder.company.setText(item.crystalSystem + "  " + item.uniformity);
             itemHolder.des.setText(item.features);

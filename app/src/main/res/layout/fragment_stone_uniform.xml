@@ -189,6 +189,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="反射色："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_reflectivity" />
@@ -209,6 +210,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="反射视旋转色散："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_reflectColor" />
@@ -253,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:text="反射视旋转角Rr："
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_internalReflection_tag" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_internalReflection" />
 
 
             <TextView
@@ -270,6 +272,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="矿物成因产状形态特征："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_uni_Rr" />
@@ -290,6 +293,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="主要鉴定特征："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_features" />
