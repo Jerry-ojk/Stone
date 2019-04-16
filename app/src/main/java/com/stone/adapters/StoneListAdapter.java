@@ -3,6 +3,7 @@ package com.stone.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Outline;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -91,6 +92,11 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.image.setImageDrawable(null);
+            Object object = itemHolder.image.getTag();
+            if (object instanceof AsyncTask) {
+                ((AsyncTask) object).cancel(false);
+            }
+            itemHolder.image.setTag(null);
         }
     }
 

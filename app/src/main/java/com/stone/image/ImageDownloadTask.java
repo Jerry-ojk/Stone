@@ -42,16 +42,15 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
     @Override
     protected Bitmap doInBackground(Void... voids) {
         File file = downloadImage(url, path);
-        if (file != null) {
+        if (file != null && !isCancelled()) {
             return ImageManager.toBitmap(file, imageView.getLayoutParams().width);
-        } else {
-            Log.i("666", "下载失败");
         }
         return null;
     }
-
     private File downloadImage(String url, String path) {
         if (okHttpClient == null) okHttpClient = new OkHttpClient();
+        InputStream inputStream = null;
+        BufferedOutputStream bufferedStream = null;
         try {
             File file = new File(path + "_temp");
             if (file.exists() && !file.delete()) {
@@ -66,15 +65,13 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
             if (responseBody == null || responseBody.contentLength() == 0) {
                 return null;
             }
-            InputStream inputStream = responseBody.byteStream();
-            BufferedOutputStream bufferedStream = new BufferedOutputStream(new FileOutputStream(file));
+            inputStream = responseBody.byteStream();
+            bufferedStream = new BufferedOutputStream(new FileOutputStream(file));
             byte[] bytes = new byte[4096];
             int len;
             while ((len = inputStream.read(bytes)) != -1) {
                 bufferedStream.write(bytes, 0, len);
             }
-            inputStream.close();
-            bufferedStream.close();
             File realFile = new File(path);
             if (!realFile.exists() || realFile.delete()) {
                 if (file.renameTo(new File(path))) {
@@ -85,6 +82,17 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
             }
             return null;
         } catch (IOException e) {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (bufferedStream != null) {
+                    bufferedStream.close();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
             e.printStackTrace();
         }
         return null;
@@ -92,10 +100,11 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        if (bitmap != null) {
+        if (bitmap != null && imageView.getTag() == this) {
             ImageManager.putThumbnailCache(index, bitmap);
             imageView.setImageBitmap(bitmap);
         }
         imageView = null;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.stone.image;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -29,6 +30,8 @@ public class ImageManager {
     private static ArrayCache thumbnailCache = new ArrayCache(56);
     private static Bitmap bigImageCache = null;
     private static String name = null;
+    public static final int TYPE_THUMBNAIL = 0;
+    public static final int TYPE_BIGIMAGE = 1;
 
 
     public interface ImageLoadListener {
@@ -78,25 +81,26 @@ public class ImageManager {
             return;
         }
         imageView.setImageResource(R.drawable.ic_empty_photo);
-        if (loadLocalThumbnail(getImagePath(stone.chaName, 0), stone.id, imageView) == null) {
-            if (stone.identifyImageUrl != null) {
-                downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
-            }
+        if (loadLocalBigImageAsync(stone, TYPE_THUMBNAIL, imageView)) {
+            return;
+        }
+        if (stone.identifyImageUrl != null) {
+            downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
         }
     }
 
     public static void loadBigImage(Stone stone, ImageView imageView) {
         if (bigImageCache != null && stone.chaName.equals(name)) {
             imageView.setImageBitmap(bigImageCache);
-        } else if (loadLocalBigImage(getImagePath(stone.chaName, 0), imageView) == null) {
-            if (stone.identifyImageUrl != null) {
-                downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
-            }
+            return;
         }
-    }
-
-    public static void putThumbnailCache(int index, Bitmap bitmap) {
-        thumbnailCache.put(index, bitmap);
+        imageView.setImageResource(R.drawable.ic_empty_photo);
+        if (loadLocalBigImageAsync(stone, TYPE_BIGIMAGE, imageView)) {
+            return;
+        }
+        if (stone.identifyImageUrl != null) {
+            downloadImageAsync(stone.id, stone.identifyImageUrl, getImagePath(stone.chaName, 0), imageView);
+        }
     }
 
 
@@ -136,7 +140,7 @@ public class ImageManager {
         return sampleSize;
     }
 
-    private static Bitmap loadLocalImage(String path, ImageView imageView) {
+    public static Bitmap loadLocalImage(String path, ImageView imageView) {
         ViewGroup.LayoutParams params = imageView.getLayoutParams();
         int width;
         if (params.width == ViewGroup.LayoutParams.MATCH_PARENT) {
@@ -148,14 +152,16 @@ public class ImageManager {
         return toBitmap(new File(path), width);
     }
 
-    private static Bitmap loadLocalBigImage(String path, ImageView imageView) {
-        Bitmap bitmap = loadLocalImage(path, imageView);
-        if (bitmap != null) {
-            bigImageCache = bitmap;
-            imageView.setImageBitmap(bitmap);
-        }
-        return bitmap;
+
+    public static void putThumbnailCache(int index, Bitmap bitmap) {
+        thumbnailCache.put(index, bitmap);
     }
+
+    public static void putBigImageCache(String name, Bitmap bitmap) {
+        ImageManager.name = name;
+        bigImageCache = bitmap;
+    }
+
 
     private static Bitmap loadLocalThumbnail(String path, int index, ImageView imageView) {
         Bitmap bitmap = loadLocalImage(path, imageView);
@@ -166,21 +172,37 @@ public class ImageManager {
         return bitmap;
     }
 
+    private static boolean loadLocalBigImageAsync(Stone stone, int type, ImageView imageView) {
+        File file = new File(getImagePath(stone.chaName, TYPE_BIGIMAGE));
+        if (file.exists()) {
+            ImageLoadTask task = new ImageLoadTask(stone, type, imageView);
+            imageView.setTag(task);
+            task.execute();
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     private static void downloadImageAsync(int index, String url, String path, ImageView imageView) {
         File fileBigImage = new File(bigImageDir);
         File fileIdentify = new File(identifyDir);
         if ((fileBigImage.exists() || fileBigImage.mkdirs()) && (fileIdentify.exists() || fileIdentify.mkdirs())) {
+            Log.i("666", "下载图片");
             ImageDownloadTask task = new ImageDownloadTask(index, url, path, imageView);
+            imageView.setTag(task);
             task.execute();
         }
     }
 
     public static String getImagePath(String name, int type) {
-        if (type == 0) {
-            return bigImageDir + '/' + name + ".jpg";
-        } else {
-            return identifyDir + '/' + name + ".jpg";
-        }
+//        if (type == TYPE_THUMBNAIL) {
+//            return bigImageDir + '/' + name + ".jpg";
+//        } else {
+//            return identifyDir + '/' + name + ".jpg";
+//        }
+        return bigImageDir + '/' + name + ".jpg";
     }
 
     public static void clearBigImageCache() {
@@ -189,7 +211,7 @@ public class ImageManager {
     }
 
     //低内存时准备回收bitmap空间
-    public static void onLowMemory() {
+    public static void clearCache() {
         thumbnailCache.clear();
         clearBigImageCache();
     }

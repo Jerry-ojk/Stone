@@ -61,6 +61,10 @@ public class StoneActivity extends AppCompatActivity {
     public void showImage(Bitmap bitmap) {
         if (imageFragment == null) {
             imageFragment = new ImageFragment(this, bitmap);
+            imageFragment.setSharedElementEnterTransition(new ChangeImageTransform());
+            stoneFragment.setExitTransition(new Fade());
+            stoneFragment.setEnterTransition(new Fade());
+            imageFragment.setSharedElementReturnTransition(new ChangeImageTransform());
         }
 //        int uiFlags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 //                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -70,11 +74,6 @@ public class StoneActivity extends AppCompatActivity {
         //Window window = getWindow();
         //window.getDecorView().setSystemUiVisibility(uiFlags);
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        imageFragment.setSharedElementEnterTransition(new ChangeImageTransform());
-        stoneFragment.setExitTransition(new Fade());
-        stoneFragment.setEnterTransition(new Fade());
-        imageFragment.setSharedElementReturnTransition(new ChangeImageTransform());
 
         getSupportFragmentManager().beginTransaction()
                 .addSharedElement(stoneFragment.getPhotoView(), "image_stone")

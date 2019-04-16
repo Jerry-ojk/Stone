@@ -96,6 +96,7 @@ public abstract class StoneFragment extends Fragment {
         toolbar.setNavigationOnClickListener(v -> stoneActivity.finish());
 
         photoView = parent.findViewById(R.id.photo_view);
+        Log.i("666", "进入详情界面，加载" + stone.chaName);
         ImageManager.loadBigImage(stone, photoView);
         photoView.setOnClickListener(v -> stoneActivity.showImage(ImageManager.getBitmapFromImageView(photoView)));
 
@@ -116,7 +117,6 @@ public abstract class StoneFragment extends Fragment {
         tv_internalReflection = parent.findViewById(R.id.tv_internalReflection);
         tv_features = parent.findViewById(R.id.tv_features);
         tv_mic = parent.findViewById(R.id.tv_mic);
-        Log.i("666", "进入详情界面，加载" + stone.chaName);
         tv_chaName.setText(stone.chaName);
         tv_engName.setText(stone.engName);
         tv_formula.setText(stone.formula);
@@ -167,7 +167,7 @@ public abstract class StoneFragment extends Fragment {
     public void onDestroyView() {
         if (superPlayerView != null)
             superPlayerView.pause();
-        ImageManager.clearBigImageCache();
+        //ImageManager.clearBigImageCache();
         super.onDestroyView();
     }
 
@@ -175,6 +175,7 @@ public abstract class StoneFragment extends Fragment {
     public void onDestroy() {
         if (superPlayerView != null)
             superPlayerView.release();
+        Log.i("666","StoneFragment onDestroy");
         super.onDestroy();
     }
 }

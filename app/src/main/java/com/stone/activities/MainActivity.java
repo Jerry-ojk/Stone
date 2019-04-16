@@ -99,7 +99,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onLowMemory() {
         //低内存时准备回收bitmap空间
-        ImageManager.onLowMemory();
+        ImageManager.clearCache();
         super.onLowMemory();
+    }
+
+    @Override
+    protected void onDestroy() {
+        ImageManager.clearCache();
+        super.onDestroy();
     }
 }

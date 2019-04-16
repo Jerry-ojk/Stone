@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.stone.R;
 import com.stone.adapters.ConditionAdapter;
@@ -37,5 +38,6 @@ public class ConditionActivity extends AppCompatActivity {
         sp_reflect.setAdapter(new ConditionAdapter(new String[]{"内反射：", "无", "红", "黄", "蓝", "绿", "白"}));
         sp_ps = findViewById(R.id.sp_ps);
         sp_ps.setAdapter(new ConditionAdapter(new String[]{"相符Ps：", "+", "-"}));
+        Toast.makeText(this, "该功能暂未完善", Toast.LENGTH_SHORT).show();
     }
 }

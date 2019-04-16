@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.stone.Data;
 import com.stone.R;
 import com.stone.activities.MainActivity;
+import com.stone.activities.SettingsActivity;
 import com.stone.adapters.StoneListAdapter;
 
 
@@ -54,6 +55,9 @@ public class HomeFragment extends Fragment {
                 popupMenu.inflate(R.menu.menu_home);
                 popupMenu.setOnMenuItemClickListener(item -> {
                     switch (item.getItemId()) {
+                        case R.id.menu_settings:
+                            activity.startActivity(new Intent(activity, SettingsActivity.class));
+                            break;
                         case R.id.menu_exit:
                             activity.finish();
                             break;

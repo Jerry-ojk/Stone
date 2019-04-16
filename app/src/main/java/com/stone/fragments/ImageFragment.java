@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.stone.R;
 import com.stone.activities.StoneActivity;
-import com.stone.image.ImageManager;
 import com.stone.views.PhotoView;
 
 @SuppressLint("ValidFragment")
