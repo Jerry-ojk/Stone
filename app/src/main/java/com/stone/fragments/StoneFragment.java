@@ -2,16 +2,17 @@ package com.stone.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public abstract class StoneFragment extends Fragment {
     private TextView tv_internalReflection;
     private TextView tv_mic;
     private TextView tv_features;
+    private ImageView iv_heart;
+    private boolean isCollect = false;
 
 
     private StoneActivity stoneActivity;
@@ -89,11 +92,19 @@ public abstract class StoneFragment extends Fragment {
             return parent;
         }
 
+        parent.findViewById(R.id.iv_back).setOnClickListener(v -> stoneActivity.finish());
+        TextView tv_title = parent.findViewById(R.id.tv_title);
+        tv_title.setText(stone.chaName);
+        iv_heart = parent.findViewById(R.id.iv_heart);
+        iv_heart.setOnClickListener(v -> {
+            isCollect = !isCollect;
+            if (isCollect) {
+                iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
+            } else {
+                iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFFFFFF));
+            }
+        });
 
-        Toolbar toolbar = parent.findViewById(R.id.toolbar_stone);
-        toolbar.setTitle(stone.chaName);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setNavigationOnClickListener(v -> stoneActivity.finish());
 
         photoView = parent.findViewById(R.id.photo_view);
         Log.i("666", "进入详情界面，加载" + stone.chaName);
@@ -175,7 +186,7 @@ public abstract class StoneFragment extends Fragment {
     public void onDestroy() {
         if (superPlayerView != null)
             superPlayerView.release();
-        Log.i("666","StoneFragment onDestroy");
+        Log.i("666", "StoneFragment onDestroy");
         super.onDestroy();
     }
 }

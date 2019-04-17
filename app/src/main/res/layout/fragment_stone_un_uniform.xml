@@ -8,15 +8,7 @@
     android:orientation="vertical"
     tools:context=".activities.StoneActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_stone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+    <include layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
