@@ -50,9 +50,10 @@ public class Data {
 
         final int size = STONE_LIST.size();
         try (FileInputStream stream = context.openFileInput("favour")) {
-            final int index = stream.read();
-            if (index >= 0 && index < size) {
+            int index = stream.read();
+            while (index >= 0 && index < size) {
                 COLLECT_LIST.add(STONE_LIST.get(index));
+                index = stream.read();
             }
         } catch (Exception e) {
             e.printStackTrace();
