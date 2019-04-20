@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.stone.Data;
 import com.stone.R;
 import com.stone.fragments.HomeFragment;
 import com.stone.fragments.SearchFragment;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        Data.saveData(this);
         ImageManager.clearCache();
         super.onDestroy();
     }

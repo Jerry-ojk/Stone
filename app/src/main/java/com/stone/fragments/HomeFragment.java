@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.stone.Data;
 import com.stone.R;
+import com.stone.activities.CollectActivity;
 import com.stone.activities.MainActivity;
 import com.stone.activities.SettingsActivity;
 import com.stone.adapters.StoneListAdapter;
@@ -55,6 +56,9 @@ public class HomeFragment extends Fragment {
                 popupMenu.inflate(R.menu.menu_home);
                 popupMenu.setOnMenuItemClickListener(item -> {
                     switch (item.getItemId()) {
+                        case R.id.menu_collect:
+                            activity.startActivity(new Intent(activity, CollectActivity.class));
+                            break;
                         case R.id.menu_settings:
                             activity.startActivity(new Intent(activity, SettingsActivity.class));
                             break;
@@ -71,7 +75,7 @@ public class HomeFragment extends Fragment {
             activity = (MainActivity) container.getContext();
         }
         Data.loadData(activity);
-        stoneListAdapter = new StoneListAdapter(activity);
+        stoneListAdapter = new StoneListAdapter(activity, Data.STONE_LIST);
         recyclerView.setAdapter(stoneListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
 

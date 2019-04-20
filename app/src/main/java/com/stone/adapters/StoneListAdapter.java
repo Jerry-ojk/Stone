@@ -12,12 +12,13 @@ import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.stone.Data;
 import com.stone.R;
 import com.stone.activities.MainActivity;
 import com.stone.activities.StoneActivity;
 import com.stone.image.ImageManager;
 import com.stone.model.Stone;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,13 +26,15 @@ import com.stone.model.Stone;
  */
 
 public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private ArrayList<Stone> data;
 
     public static int TYPE_HEADER = 0;
     public static int TYPE_ITEM = 1;
     private Context context;
     private View.OnClickListener listener;
 
-    public StoneListAdapter(Context context) {
+    public StoneListAdapter(Context context, ArrayList<Stone> data) {
+        this.data = data;
         this.context = context;
         listener = v -> {
             int id = (int) v.getTag();
@@ -66,7 +69,7 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
-            Stone item = Data.STONE_LIST.get(position);
+            Stone item = data.get(position);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.itemView.setTag(item.id);
             itemHolder.name.setText(item.chaName + "  " + item.formula);
@@ -84,7 +87,7 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemCount() {
-        return Data.STONE_LIST.size();
+        return data.size();
     }
 
     @Override

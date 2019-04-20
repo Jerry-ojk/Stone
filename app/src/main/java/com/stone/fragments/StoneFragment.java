@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.stone.Data;
 import com.stone.R;
 import com.stone.activities.StoneActivity;
 import com.stone.image.ImageManager;
@@ -96,15 +97,21 @@ public abstract class StoneFragment extends Fragment {
         TextView tv_title = parent.findViewById(R.id.tv_title);
         tv_title.setText(stone.chaName);
         iv_heart = parent.findViewById(R.id.iv_heart);
+        if (Data.COLLECT_LIST.contains(stone)) {
+            isCollect = true;
+            iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
+        }
+
         iv_heart.setOnClickListener(v -> {
             isCollect = !isCollect;
             if (isCollect) {
+                Data.collectStone(stone, true);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
             } else {
+                Data.collectStone(stone, false);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFFFFFF));
             }
         });
-
 
         photoView = parent.findViewById(R.id.photo_view);
         Log.i("666", "进入详情界面，加载" + stone.chaName);
