@@ -1,6 +1,5 @@
 package com.stone.image;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -24,9 +23,9 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 public class ImageManager {
-    private static String imageRoot = Environment.getExternalStorageDirectory() + "/stone_image/";
-    private static String bigImageDir = imageRoot + "image";
-    private static String identifyDir = imageRoot + "identify";
+    public static String IMAGE_ROOT = Environment.getExternalStorageDirectory() + "/stone_image/";
+    private static String bigImageDir = IMAGE_ROOT + "image";
+    private static String identifyDir = IMAGE_ROOT + "identify";
     private static ArrayCache thumbnailCache = new ArrayCache(56);
     private static Bitmap bigImageCache = null;
     private static String name = null;

@@ -36,10 +36,10 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/tv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="本地缓存：5.2M"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"

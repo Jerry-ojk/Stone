@@ -24,10 +24,11 @@ public class ConditionAdapter extends BaseAdapter {
         TextView view;
         if (convertView == null) {
             view = new TextView(parent.getContext());
-            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-                    , ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.setMargins(12, 4, 12, 4);
-            view.setLayoutParams(params);
+//            ViewGroup.MarginLayoutParams params = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+//                    , ViewGroup.LayoutParams.WRAP_CONTENT);
+//            params.setMargins(12, 4, 12, 4);
+            view.setPadding(12, 4, 12, 4);
+            //view.setLayoutParams(params);
             view.setTextSize(16);
             view.setGravity(Gravity.CENTER);
         } else {
