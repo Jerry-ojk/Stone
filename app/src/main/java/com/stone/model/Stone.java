@@ -8,7 +8,7 @@ public class Stone {
     public String formula;
     //晶系
     public String crystalSystem;
-    //均非性
+    //非均性
     public String uniformity;
 
     //硬度

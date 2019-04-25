@@ -50,6 +50,7 @@ public class ConditionAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+        if (position == 0) return null;
         return items[position];
     }
 

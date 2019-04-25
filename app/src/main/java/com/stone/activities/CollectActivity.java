@@ -12,6 +12,7 @@ import com.stone.adapters.StoneListAdapter;
 public class CollectActivity extends AppCompatActivity {
     private StoneListAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

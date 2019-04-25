@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.stone.Data;
 import com.stone.R;
@@ -21,6 +23,8 @@ import com.stone.activities.ConditionActivity;
 import com.stone.activities.MainActivity;
 import com.stone.adapters.TextAdapter;
 import com.stone.model.Stone;
+import com.stone.model.StoneUnUniform;
+import com.stone.model.StoneUniform;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,10 @@ public class SearchFragment extends Fragment {
     private RecyclerView advice;
     private ArrayList<Stone> list = new ArrayList<>();
     private TextAdapter adapter;
+    private boolean hasUni = true;//显示均质
+    private boolean hasNotUni = true;//显示非均质
+    private boolean isSort = false;//启用筛选
+    private String key;
 
     @Override
     public void onAttach(Context context) {
@@ -55,6 +63,30 @@ public class SearchFragment extends Fragment {
         //点击打开高级搜索界面
         view.findViewById(R.id.iv_condition).setOnClickListener(
                 v -> mainActivity.startActivity(new Intent(mainActivity, ConditionActivity.class)));
+        CheckBox cb_uni = view.findViewById(R.id.cb_uni);
+        cb_uni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hasUni = isChecked;
+                searchAndRefresh(key);
+            }
+        });
+        CheckBox cb_not_uni = view.findViewById(R.id.cb_not_uni);
+        cb_not_uni.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                hasNotUni = isChecked;
+                searchAndRefresh(key);
+            }
+        });
+        CheckBox cb_sort = view.findViewById(R.id.cb_sort);
+        cb_sort.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isSort = isChecked;
+                searchAndRefresh(key);
+            }
+        });
         initViews(view);
         return view;
     }
@@ -138,12 +170,20 @@ public class SearchFragment extends Fragment {
 
     /**
      * 输入key后搜索并刷新界面显示结果
+     *
      * @param key 输入的关键字
      */
     public void searchAndRefresh(String key) {
+        this.key = key;
         list.clear();
         if (key != null && key.length() > 0) {
             for (Stone stone : Data.STONE_LIST) {
+                if (!hasUni && stone instanceof StoneUniform) {
+                    continue;
+                }
+                if (!hasNotUni && stone instanceof StoneUnUniform) {
+                    continue;
+                }
                 if (stone.chaName != null && stone.engName != null && stone.formula != null) {
                     if (stone.chaName.contains(key) || stone.formula.contains(key) || stone.engName.contains(key)) {
                         list.add(stone);
@@ -153,6 +193,23 @@ public class SearchFragment extends Fragment {
         }
         adapter.refresh(list);
     }
+
+//    public void updateCondition() {
+//        int size = list.size();
+//        for (int i = 0; i < size; i++) {
+//            Stone stone = list.get(i);
+//            if (!hasUni && stone instanceof StoneUniform) {
+//                list.remove(i);
+//                i--;
+//                size--;
+//            } else if (!hasNotUni && stone instanceof StoneUnUniform) {
+//                list.remove(i);
+//                i--;
+//                size--;
+//            }
+//        }
+//        adapter.refresh(list);
+//    }
 
 
     @Override

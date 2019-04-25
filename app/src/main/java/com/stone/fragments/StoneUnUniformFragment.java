@@ -63,7 +63,7 @@ public class StoneUnUniformFragment extends StoneFragment {
         tv_not_DAr.setText(stone.DAr);
         tv_not_Rs.setText(stone.Rs);
         tv_not_Ps.setText(stone.Ps);
-        tv_not_DAR.setText(stone.DAR);
+        tv_not_DAR.setText(stone.DRr);
         return parent;
     }
 
