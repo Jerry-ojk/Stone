@@ -50,15 +50,18 @@ public class ImageManager {
                         for (StonePicture picture : list) {
                             Stone stone = Data.findStoneById(picture.id);
                             if (stone != null) {
-                                if (picture.identifyImage != null) {
-                                    stone.identifyImageUrl = picture.identifyImage.getUrl();
+                                BmobFile bmobFile = picture.identifyImage;
+                                if (bmobFile != null) {
+                                    stone.identifyImageUrl = bmobFile.getUrl();
                                 }
-                                if (picture.bigImage != null) {
-                                    stone.bigImageUrl = picture.bigImage.getUrl();
+                                bmobFile = picture.bigImage;
+                                if (bmobFile != null) {
+                                    stone.bigImageUrl = bmobFile.getUrl();
                                 }
-                                BmobFile videoFile = picture.video;
-                                if (videoFile != null) {
-                                    stone.videoUrl = videoFile.getUrl();
+                                bmobFile = picture.video;
+                                if (bmobFile != null) {
+                                    stone.videoUrl = bmobFile.getUrl();
+                                    Log.i("666", stone.chaName + stone.videoUrl);
                                 }
                             }
                         }
@@ -117,8 +120,8 @@ public class ImageManager {
                 options.inSampleSize = calculateSampleSize(options.outWidth, width);
                 stream = new FileInputStream(file);
                 bitmap = BitmapFactory.decodeStream(stream, null, options);
-                if (bitmap != null)
-                    Log.i("666", bitmap.getWidth() + "x" + bitmap.getHeight() + "-" + bitmap.getByteCount() + "-" + bitmap.getAllocationByteCount());
+                //if (bitmap != null)
+                //Log.i("666", bitmap.getWidth() + "x" + bitmap.getHeight() + "-" + bitmap.getByteCount() + "-" + bitmap.getAllocationByteCount());
                 stream.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -144,7 +147,7 @@ public class ImageManager {
         int width;
         if (params.width == ViewGroup.LayoutParams.MATCH_PARENT) {
             width = imageView.getContext().getResources().getDisplayMetrics().widthPixels;
-            Log.i("666", width + "");
+            //Log.i("666", width + "");
         } else {
             width = params.width;
         }
@@ -188,7 +191,7 @@ public class ImageManager {
         File fileBigImage = new File(bigImageDir);
         File fileIdentify = new File(identifyDir);
         if ((fileBigImage.exists() || fileBigImage.mkdirs()) && (fileIdentify.exists() || fileIdentify.mkdirs())) {
-            Log.i("666", "下载图片");
+            //Log.i("666", "下载图片");
             ImageDownloadTask task = new ImageDownloadTask(index, url, path, imageView);
             imageView.setTag(task);
             task.execute();

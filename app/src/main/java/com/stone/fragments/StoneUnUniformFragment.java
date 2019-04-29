@@ -44,8 +44,6 @@ public class StoneUnUniformFragment extends StoneFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View parent = super.onCreateView(inflater, container, savedInstanceState);
-        Log.i("666", "" + container.getHeight());
-
         if (stone == null) {
             Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
             return parent;
@@ -65,11 +63,5 @@ public class StoneUnUniformFragment extends StoneFragment {
         tv_not_Ps.setText(stone.Ps);
         tv_not_DAR.setText(stone.DRr);
         return parent;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.i("666", "" + view.getHeight());
     }
 }

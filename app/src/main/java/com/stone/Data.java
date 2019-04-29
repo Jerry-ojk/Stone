@@ -92,10 +92,10 @@ public class Data {
     }
 
     public static Stone findStoneById(int id) {
-        for (Stone stone : STONE_LIST) {
-            if (stone.id == id) return stone;
-        }
-        return null;
+//        for (Stone stone : STONE_LIST) {
+//            if (stone.id == id) return stone;
+//        }
+        return STONE_LIST.get(id);
     }
 
     public static Stone findStoneByName(String name) {

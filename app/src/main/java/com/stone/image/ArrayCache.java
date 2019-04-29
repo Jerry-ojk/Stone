@@ -22,8 +22,11 @@ public class ArrayCache {
 
     public void clear() {
         for (int i = 0; i < bitmaps.length; i++) {
-            bitmaps[i].recycle();
-            bitmaps[i] = null;
+            Bitmap bitmap = bitmaps[i];
+            if (bitmap != null) {
+                bitmap.recycle();
+                bitmaps[i] = null;
+            }
         }
     }
 }

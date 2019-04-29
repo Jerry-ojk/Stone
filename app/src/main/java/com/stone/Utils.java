@@ -39,13 +39,6 @@ public class Utils {
         return str == null || str.length() == 0;
     }
 
-    //url相对路径
-    public static void loadImage(ImageView imageView, Context context, String url) {
-//        Glide.with(context)
-//                .load(("http://120.77.183.132:8080/ChuangTec/img/news/" + url))
-//                .apply(new RequestOptions().placeholder(R.drawable.loading))
-//                .into(imageView);
-    }
 
     public static String locateCity(Activity activity) {
         double longitude;

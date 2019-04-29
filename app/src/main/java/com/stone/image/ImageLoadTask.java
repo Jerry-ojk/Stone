@@ -34,7 +34,7 @@ public class ImageLoadTask extends AsyncTask<Void, Integer, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        Log.i("task", "onPostExecute" + stone.id);
+        //Log.i("task", "onPostExecute" + stone.id);
         if (bitmap != null && imageView.getTag() == this) {
             if (type == ImageManager.TYPE_THUMBNAIL) {
                 ImageManager.putThumbnailCache(stone.id, bitmap);

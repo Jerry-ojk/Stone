@@ -2,6 +2,7 @@ package com.stone.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -19,16 +20,15 @@ import android.widget.Toast;
 import com.stone.Data;
 import com.stone.R;
 import com.stone.activities.StoneActivity;
+import com.stone.activities.VideoActivity;
 import com.stone.image.ImageManager;
 import com.stone.model.Stone;
-import com.stone.player.SuperPlayerView;
 import com.stone.views.PhotoView;
 
 @SuppressLint("ValidFragment")
 public abstract class StoneFragment extends Fragment {
 
     private PhotoView photoView;
-    private SuperPlayerView superPlayerView;
     private TextView tv_chaName;
     private TextView tv_engName;
     private TextView tv_formula;
@@ -114,6 +114,20 @@ public abstract class StoneFragment extends Fragment {
         });
 
         photoView = parent.findViewById(R.id.photo_view);
+        TextView tv_video = parent.findViewById(R.id.tv_video);
+        tv_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stone.videoUrl != null) {
+                    Intent intent = new Intent(stoneActivity, VideoActivity.class);
+                    intent.putExtra(VideoActivity.VIDEO_NAME, stone.chaName);
+                    intent.putExtra(VideoActivity.VIDEO_URL, stone.videoUrl);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(stoneActivity, "该矿石暂无视频", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         Log.i("666", "进入详情界面，加载" + stone.chaName);
         ImageManager.loadBigImage(stone, photoView);
         photoView.setOnClickListener(v -> stoneActivity.showImage(ImageManager.getBitmapFromImageView(photoView)));
@@ -161,39 +175,38 @@ public abstract class StoneFragment extends Fragment {
     public abstract int getViewId();
 
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        if (superPlayerView != null) {
-            outState.putLong("During", superPlayerView.getDuration());
-            outState.putLong("PlayPosition", superPlayerView.getPlayPosition());
-            outState.putFloat("BufferLength", superPlayerView.getBufferLengthPixel());
-            superPlayerView.pause();
-        }
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle bundle) {
-        super.onViewStateRestored(bundle);
-        if (bundle != null && superPlayerView != null) {
-            superPlayerView.setDuration(bundle.getLong("During", 0));
-            superPlayerView.setPlayPosition(bundle.getLong("PlayPosition", 0));
-            superPlayerView.setBufferLengthPixel(bundle.getFloat("BufferLength", 0f));
-        }
-    }
-
-    @Override
-    public void onDestroyView() {
-        if (superPlayerView != null)
-            superPlayerView.pause();
-        //ImageManager.clearBigImageCache();
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (superPlayerView != null)
-            superPlayerView.release();
-        Log.i("666", "StoneFragment onDestroy");
-        super.onDestroy();
-    }
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        if (superPlayerView != null) {
+//            outState.putLong("During", superPlayerView.getDuration());
+//            outState.putLong("PlayPosition", superPlayerView.getPlayPosition());
+//            outState.putFloat("BufferLength", superPlayerView.getBufferLengthPixel());
+//            superPlayerView.pause();
+//        }
+//    }
+//
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle bundle) {
+//        super.onViewStateRestored(bundle);
+//        if (bundle != null && superPlayerView != null) {
+//            superPlayerView.setDuration(bundle.getLong("During", 0));
+//            superPlayerView.setPlayPosition(bundle.getLong("PlayPosition", 0));
+//            superPlayerView.setBufferLengthPixel(bundle.getFloat("BufferLength", 0f));
+//        }
+//    }
+//
+//    @Override
+//    public void onDestroyView() {
+//        if (superPlayerView != null)
+//            superPlayerView.pause();
+//        //ImageManager.clearBigImageCache();
+//        super.onDestroyView();
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        if (superPlayerView != null)
+//            superPlayerView.release();
+//        super.onDestroy();
+//    }
 }
