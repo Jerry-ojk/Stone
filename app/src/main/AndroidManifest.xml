@@ -21,8 +21,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activities.VideoActivity"
+            android:configChanges="orientation|keyboard|screenSize"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.CollectActivity"

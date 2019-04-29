@@ -2,6 +2,8 @@ package com.stone.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.stone.R;
 import com.tencent.liteav.demo.play.SuperPlayerConst;
@@ -18,8 +20,12 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Window window = getWindow();
+        //window.getDecorView().setSystemUiVisibility(uiFlags);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_video);
         superPlayerView = findViewById(R.id.player_view);
+        superPlayerView.requestPlayMode(SuperPlayerConst.PLAYMODE_FULLSCREEN);
         SuperPlayerGlobalConfig prefs = SuperPlayerGlobalConfig.getInstance();
         // 播放器默认缓存个数
         prefs.maxCacheItem = 10;
