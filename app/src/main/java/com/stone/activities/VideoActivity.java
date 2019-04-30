@@ -2,73 +2,75 @@ package com.stone.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
-import android.view.WindowManager;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.stone.R;
-import com.tencent.liteav.demo.play.SuperPlayerConst;
-import com.tencent.liteav.demo.play.SuperPlayerGlobalConfig;
-import com.tencent.liteav.demo.play.SuperPlayerModel;
-import com.tencent.liteav.demo.play.SuperPlayerView;
-import com.tencent.rtmp.TXLiveConstants;
+
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 
 public class VideoActivity extends AppCompatActivity {
-    private SuperPlayerView superPlayerView;
+    private JzvdStd videoView;
     public static final String VIDEO_URL = "video_url";
     public static final String VIDEO_NAME = "video_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Window window = getWindow();
-        //window.getDecorView().setSystemUiVisibility(uiFlags);
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_video);
-        superPlayerView = findViewById(R.id.player_view);
-        superPlayerView.requestPlayMode(SuperPlayerConst.PLAYMODE_FULLSCREEN);
-        SuperPlayerGlobalConfig prefs = SuperPlayerGlobalConfig.getInstance();
-        // 播放器默认缓存个数
-        prefs.maxCacheItem = 10;
-        // 设置播放器渲染模式
-        prefs.enableHWAcceleration = true;
-        prefs.renderMode = TXLiveConstants.RENDER_MODE_ADJUST_RESOLUTION;
+        videoView = findViewById(R.id.video_player);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
+        setSupportActionBar(toolbar);
+        Jzvd.SAVE_PROGRESS = false;
+        Jzvd.TOOL_BAR_EXIST = true;
+        Jzvd.ACTION_BAR_EXIST = false;
 
         String videoName = getIntent().getStringExtra(VIDEO_NAME);
         String videoUrl = getIntent().getStringExtra(VIDEO_URL);
+        Jzvd.setVideoImageDisplayType(Jzvd.VIDEO_IMAGE_DISPLAY_TYPE_FILL_PARENT);
 
         if (videoUrl != null) {
-            SuperPlayerModel model = new SuperPlayerModel();
-            model.title = videoName;
-            model.videoURL = videoUrl;
-            superPlayerView.playWithMode(model);
+            getSupportActionBar().setTitle(videoName);
+            videoView.setUp(videoUrl, videoName, Jzvd.SCREEN_WINDOW_NORMAL);
+            videoView.startButton.performClick();
         }
     }
 
     @Override
-    protected void onResume() {
-        if (superPlayerView.getPlayState() == SuperPlayerConst.PLAYSTATE_PLAY) {
-            superPlayerView.onResume();
-            if (superPlayerView.getPlayMode() == SuperPlayerConst.PLAYMODE_FLOAT) {
-                superPlayerView.requestPlayMode(SuperPlayerConst.PLAYMODE_WINDOW);
-            }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        if (superPlayerView.getPlayMode() != SuperPlayerConst.PLAYMODE_FLOAT) {
-            superPlayerView.onPause();
-        }
         super.onPause();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override
     protected void onDestroy() {
-        superPlayerView.release();
-        if (superPlayerView.getPlayMode() != SuperPlayerConst.PLAYMODE_FLOAT) {
-            superPlayerView.resetPlayer();
-        }
+        Jzvd.releaseAllVideos();
         super.onDestroy();
     }
 }
