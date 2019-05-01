@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Outline;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +19,10 @@ import com.stone.activities.MainActivity;
 import com.stone.activities.StoneActivity;
 import com.stone.image.ImageManager;
 import com.stone.model.Stone;
+import com.stone.views.SuperSubSpan;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,6 +35,10 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public static int TYPE_HEADER = 0;
     public static int TYPE_ITEM = 1;
     private Context context;
+    private String fmt;
+    private String srcfmt;
+    private Spannable str;
+    private List<Integer> se;
     private View.OnClickListener listener;
 
     public StoneListAdapter(Context context, ArrayList<Stone> data) {
@@ -72,7 +80,22 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             Stone item = data.get(position);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.itemView.setTag(item.id);
-            itemHolder.name.setText(item.chaName + "  " + item.formula);
+//            itemHolder.name.setText(item.chaName + "  " + item.formula);
+            itemHolder.name.setText(item.chaName+"  ");
+
+            fmt = item.formula;
+            srcfmt = fmt2src(fmt);
+            str = new SpannableString(srcfmt);
+            se = findse(fmt);
+            if(!se.isEmpty()) {
+                int count = 0;
+                for (int i = 0; i < se.size(); i += 2) {
+                    str.setSpan(new SuperSubSpan(), se.get(i)-(2*count+1), se.get(i + 1)-(2*count+1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    count += 1;
+                }
+            }
+            itemHolder.che_name.setText(str);
+
             itemHolder.company.setText(item.crystalSystem + "  " + item.uniformity);
             itemHolder.des.setText(item.features);
             if (MainActivity.access)
@@ -148,6 +171,7 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name;
+        TextView che_name;
         TextView company;
         TextView des;
 
@@ -155,9 +179,29 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             super(itemView);
             image = itemView.findViewById(R.id.item_image);
             name = itemView.findViewById(R.id.item_name);
+            che_name = itemView.findViewById(R.id.item_che_name);
             des = itemView.findViewById(R.id.item_des);
             company = itemView.findViewById(R.id.item_company);
             //type = itemView.findViewById(R.id.item_type);
         }
     }
+
+    private String fmt2src(String string){
+        String str = string.replaceAll("[$@]","");
+        return str;
+    }
+
+    private List<Integer> findse(String string) {
+        char[] chars = string.toCharArray();
+        List<Integer> start_end = new ArrayList<>();
+        for(int i=0;i<chars.length;i++){
+            if(chars[i] == '$'){
+                start_end.add(i+1);
+            }else if(chars[i] == '@'){
+                start_end.add(i);
+            }
+        }
+        return start_end;
+    }
+
 }
