@@ -20,6 +20,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -96,5 +101,32 @@ public class Utils {
 
     public static float dip2px(float dp) {
         return Resources.getSystem().getDisplayMetrics().density * dp;
+    }
+
+    public static List<Integer> findse(String string) {
+        char[] chars = string.toCharArray();
+        List<Integer> start_end = new ArrayList<>();
+        for(int i=0;i<chars.length;i++){
+            if(chars[i] == '$'){
+                start_end.add(i+1);
+            }else if(chars[i] == '@'){
+                start_end.add(i);
+            }
+        }
+        return start_end;
+    }
+
+    public static String fmt2src(String string){
+        String str = string.replaceAll("[$@]","");
+        return str;
+    }
+
+    public static void customToast(Activity activity,String textInfo){
+        View toastRoot = activity.getLayoutInflater().inflate(R.layout.my_toast, null);
+        Toast toast = new Toast(activity);
+        toast.setView(toastRoot);
+        TextView tv = (TextView) toastRoot.findViewById(R.id.TextViewInfo);
+        tv.setText(textInfo);
+        toast.show();
     }
 }

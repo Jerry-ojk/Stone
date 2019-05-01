@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.stone.R;
+import com.stone.Utils;
 import com.stone.activities.MainActivity;
 import com.stone.activities.StoneActivity;
 import com.stone.image.ImageManager;
@@ -84,9 +85,9 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             itemHolder.name.setText(item.chaName+"  ");
 
             fmt = item.formula;
-            srcfmt = fmt2src(fmt);
+            srcfmt = Utils.fmt2src(fmt);
             str = new SpannableString(srcfmt);
-            se = findse(fmt);
+            se = Utils.findse(fmt);
             if(!se.isEmpty()) {
                 int count = 0;
                 for (int i = 0; i < se.size(); i += 2) {
@@ -186,22 +187,7 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    private String fmt2src(String string){
-        String str = string.replaceAll("[$@]","");
-        return str;
-    }
 
-    private List<Integer> findse(String string) {
-        char[] chars = string.toCharArray();
-        List<Integer> start_end = new ArrayList<>();
-        for(int i=0;i<chars.length;i++){
-            if(chars[i] == '$'){
-                start_end.add(i+1);
-            }else if(chars[i] == '@'){
-                start_end.add(i);
-            }
-        }
-        return start_end;
-    }
+
 
 }
