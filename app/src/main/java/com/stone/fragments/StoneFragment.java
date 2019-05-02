@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -111,24 +113,29 @@ public abstract class StoneFragment extends Fragment {
         iv_heart = parent.findViewById(R.id.iv_heart);
         if (Data.COLLECT_LIST.contains(stone)) {
             isCollect = true;
-            iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
+            iv_heart.setImageResource(R.drawable.blue_heart);
         }
 
         iv_heart.setOnClickListener(v -> {
             isCollect = !isCollect;
             if (isCollect) {
                 Data.collectStone(stone, true);
-                iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
+//                iv_heart.setImageTintList(ColorStateList.valueOf(0xff2196F3));
+                iv_heart.setImageResource(R.drawable.blue_heart);
                 Utils.customToast(stoneActivity,"收藏"+stone.chaName);
             } else {
                 Data.collectStone(stone, false);
-                iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFFFFFF));
+//                iv_heart.setImageTintList(ColorStateList.valueOf(0xaa8b8b8b));
+                iv_heart.setImageResource(R.drawable.ic_heart);
                 Utils.customToast(stoneActivity,"取消收藏"+stone.chaName);
             }
         });
 
         photoView = parent.findViewById(R.id.photo_view);
         TextView tv_video = parent.findViewById(R.id.tv_video);
+        if(stone.videoUrl == null){
+            tv_video.setText("暂无视频");
+        }
         tv_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

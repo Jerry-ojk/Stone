@@ -12,12 +12,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#E5DCDCDC"
+        android:scrollbars="none">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:id="@+id/com_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <!--<com.stone.player.SuperPlayerView-->
             <!--android:id="@+id/video_player"-->
@@ -28,21 +31,18 @@
                 android:id="@+id/photo_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:adjustViewBounds="true"
-                android:transitionName="image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:transitionName="image" />
 
             <TextView
                 android:id="@+id/tv_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginBottom="4dp"
                 android:background="@drawable/tag_video"
-                android:text="观看视频"
-                app:layout_constraintBottom_toBottomOf="@+id/photo_view"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:text="观看视频" />
             <!--<ImageView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -51,358 +51,271 @@
             <!--android:id="@+id/recyclerView"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" />-->
-
-            <TextView
-                android:id="@+id/tv_chaName_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/first-card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="中文名称："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/photo_view" />
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
 
-            <TextView
-                android:id="@+id/tv_chaName"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tv_chaName_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中文名称：" />
+
+                <TextView
+                    android:id="@+id/tv_chaName"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/tv_engName_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="英文名称：" />
+
+                <TextView
+                    android:id="@+id/tv_engName"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/tv_crystal_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="矿物晶系：" />
+
+                <TextView
+                    android:id="@+id/tv_crystal"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/tv_formula_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="化学式：" />
+
+                <TextView
+                    android:id="@+id/tv_formula"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/tv_internalReflection_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="内反射：" />
+
+
+                <TextView
+                    android:id="@+id/tv_internalReflection"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ps_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="相符Ps：" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ps"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_Rs_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="旋向Rs：" />
+
+                <TextView
+                    android:id="@+id/tv_not_Rs"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ar_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="非均质视旋转角Ar：" />
+
+                <TextView
+                    android:id="@+id/tv_not_Ar"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_not_DAr_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="非均质视旋转色散DAr：" />
+
+                <TextView
+                    android:id="@+id/tv_not_DAr"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/second_card"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_chaName_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_chaName_tag" />
+                android:background="@drawable/card_bg"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/tv_engName_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="英文名称："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_chaName" />
+                <TextView
+                    android:id="@+id/tv_uniformity_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="均非性：" />
 
-            <TextView
-                android:id="@+id/tv_engName"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_engName_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_engName_tag" />
+                <TextView
+                    android:id="@+id/tv_uniformity"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_crystal_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="矿物晶系："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_engName" />
+                <TextView
+                    android:id="@+id/tv_hardness_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="硬度：" />
 
-            <TextView
-                android:id="@+id/tv_crystal"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_crystal_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_crystal_tag" />
+                <TextView
+                    android:id="@+id/tv_hardness"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
 
-            <TextView
-                android:id="@+id/tv_formula_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="化学式："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_crystal" />
+                <TextView
+                    android:id="@+id/tv_reflectivity_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反射率：" />
 
-            <TextView
-                android:id="@+id/tv_formula"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_formula_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_formula_tag" />
+                <TextView
+                    android:id="@+id/tv_reflectivity"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
+                <TextView
+                    android:id="@+id/tv_reflectColor_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反射色：" />
 
-            <TextView
-                android:id="@+id/tv_uniformity_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="非均性："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_formula" />
+                <TextView
+                    android:id="@+id/tv_reflectColor"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_uniformity"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_uniformity_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_uniformity_tag" />
+                <TextView
+                    android:id="@+id/tv_DRr_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反射视旋转色散：" />
 
-            <TextView
-                android:id="@+id/tv_hardness_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="硬度："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_uniformity" />
-
-            <TextView
-                android:id="@+id/tv_hardness"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_hardness_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_hardness_tag" />
-
-            <TextView
-                android:id="@+id/tv_reflectivity_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反射率："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hardness" />
-
-            <TextView
-                android:id="@+id/tv_reflectivity"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_reflectivity_tag"
-                tools:text="sss\ndadad/ndsdds\ndfssdas" />
-
-            <TextView
-                android:id="@+id/tv_reflectColor_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反射色："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_reflectivity" />
+                <TextView
+                    android:id="@+id/tv_DRr"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
 
-            <TextView
-                android:id="@+id/tv_reflectColor"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_reflectColor_tag" />
+                <TextView
+                    android:id="@+id/tv_not_DAR_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反射视旋转色散DAR：" />
 
-            <TextView
-                android:id="@+id/tv_DRr_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反射视旋转色散："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_reflectColor" />
+                <TextView
+                    android:id="@+id/tv_not_DAR"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_DRr"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_DRr_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_DRr_tag" />
+                <TextView
+                    android:id="@+id/tv_not_dRColor_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="双反射及反射多色性：" />
 
-            <TextView
-                android:id="@+id/tv_internalReflection_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="内反射："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_DRr" />
+                <TextView
+                    android:id="@+id/tv_not_dRColor"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
+                <TextView
+                    android:id="@+id/tv_features_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="矿物成因产状形态特征：" />
 
-            <TextView
-                android:id="@+id/tv_internalReflection"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_internalReflection_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_internalReflection_tag" />
+                <TextView
+                    android:id="@+id/tv_features"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_not_Ps_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="相符Ps："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_internalReflection" />
+                <TextView
+                    android:id="@+id/tv_mic_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主要鉴定特征：" />
 
-            <TextView
-                android:id="@+id/tv_not_Ps"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Ps_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Ps_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Rs_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="旋向Rs："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Ps_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Rs"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Rs_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Rs_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_Ar_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="非均质视旋转角Ar："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Rs" />
-
-            <TextView
-                android:id="@+id/tv_not_Ar"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_Ar_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_Ar_tag" />
-
-            <TextView
-                android:id="@+id/tv_not_DAr_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="非均质视旋转色散DAr："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_Ar" />
-
-            <TextView
-                android:id="@+id/tv_not_DAr"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_DAr_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_DAr_tag" />
+                <TextView
+                    android:id="@+id/tv_mic"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/tv_not_DAR_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="反射视旋转色散DAR："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_DAr" />
-
-            <TextView
-                android:id="@+id/tv_not_DAR"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_not_DAR_tag"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_not_DAR_tag" />
-
-
-            <TextView
-                android:id="@+id/tv_not_dRColor_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="双反射及反射多色性："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_DAR" />
-
-            <TextView
-                android:id="@+id/tv_not_dRColor"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_dRColor_tag" />
-
-            <TextView
-                android:id="@+id/tv_features_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="矿物成因产状形态特征："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_not_dRColor" />
-
-            <TextView
-                android:id="@+id/tv_features"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_features_tag" />
-
-            <TextView
-                android:id="@+id/tv_mic_tag"
-                style="@style/TagStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="主要鉴定特征："
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_features" />
-
-            <TextView
-                android:id="@+id/tv_mic"
-                style="@style/StoneTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_mic_tag" />
-
-
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

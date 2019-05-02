@@ -6,6 +6,9 @@ import android.support.transition.ChangeImageTransform;
 import android.support.transition.Fade;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.stone.Data;
@@ -18,6 +21,8 @@ import com.stone.model.Stone;
 import com.stone.model.StoneUnUniform;
 import com.stone.model.StoneUniform;
 
+import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+
 
 public class StoneActivity extends AppCompatActivity {
     private StoneFragment stoneFragment;
@@ -28,6 +33,9 @@ public class StoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stone);
+        Window window = this.getWindow();
+        window.setStatusBarColor(0xffffffff);
+        window.getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         int index = getIntent().getIntExtra("index", -1);
         if (index != -1) {
