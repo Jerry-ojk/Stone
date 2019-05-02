@@ -10,9 +10,7 @@ public class SuperSubSpan extends ReplacementSpan {
     public int getSize(Paint paint, CharSequence text, int start, int end, Paint.FontMetricsInt fm) {
         text = text.subSequence(start, end);
         String[] parts = text.toString().split(",");
-
         Paint p = getSuperSubPaint(paint);
-
         return (int) Math.max(p.measureText(parts[0]), p.measureText(parts[1]));
     }
 

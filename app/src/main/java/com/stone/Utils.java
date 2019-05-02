@@ -120,13 +120,4 @@ public class Utils {
         String str = string.replaceAll("[$@]","");
         return str;
     }
-
-    public static void customToast(Activity activity,String textInfo){
-        View toastRoot = activity.getLayoutInflater().inflate(R.layout.my_toast, null);
-        Toast toast = new Toast(activity);
-        toast.setView(toastRoot);
-        TextView tv = (TextView) toastRoot.findViewById(R.id.TextViewInfo);
-        tv.setText(textInfo);
-        toast.show();
-    }
 }
