@@ -249,31 +249,31 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/tv_DRr_tag"
-                    style="@style/TagStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="反射视旋转色散：" />
-
-                <TextView
-                    android:id="@+id/tv_DRr"
-                    style="@style/StoneTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-                <TextView
-                    android:id="@+id/tv_not_DAR_tag"
+                    android:id="@+id/tv_DAR_tag"
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="反射视旋转色散DAR：" />
 
                 <TextView
-                    android:id="@+id/tv_not_DAR"
+                    android:id="@+id/tv_DAR"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_not_DAR_tag"-->
+                    <!--style="@style/TagStyle"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="反射视旋转色散DAR：" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_not_DAR"-->
+                    <!--style="@style/StoneTextStyle"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
 
                 <TextView
                     android:id="@+id/tv_not_dRColor_tag"

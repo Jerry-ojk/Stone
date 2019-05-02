@@ -122,12 +122,12 @@ public abstract class StoneFragment extends Fragment {
                 Data.collectStone(stone, true);
 //                iv_heart.setImageTintList(ColorStateList.valueOf(0xff2196F3));
                 iv_heart.setImageResource(R.drawable.blue_heart);
-                Utils.customToast(stoneActivity,"收藏"+stone.chaName);
+                Toast.makeText(stoneActivity, "收藏"+stone.chaName, Toast.LENGTH_SHORT).show();
             } else {
                 Data.collectStone(stone, false);
 //                iv_heart.setImageTintList(ColorStateList.valueOf(0xaa8b8b8b));
                 iv_heart.setImageResource(R.drawable.ic_heart);
-                Utils.customToast(stoneActivity,"取消收藏"+stone.chaName);
+                Toast.makeText(stoneActivity, "取消收藏"+stone.chaName, Toast.LENGTH_SHORT).show();
             }
         });
 

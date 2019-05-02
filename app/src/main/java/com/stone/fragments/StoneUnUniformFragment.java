@@ -54,7 +54,7 @@ public class StoneUnUniformFragment extends StoneFragment {
         TextView tv_not_DAr = parent.findViewById(R.id.tv_not_DAr);
         TextView tv_not_Rs = parent.findViewById(R.id.tv_not_Rs);
         TextView tv_not_Ps = parent.findViewById(R.id.tv_not_Ps);
-        TextView tv_not_DAR = parent.findViewById(R.id.tv_not_DAR);
+        TextView tv_not_DAR = parent.findViewById(R.id.tv_DAR);
 
         tv_not_dRColor.setText(stone.doubleReflectColor);
         tv_not_Ar.setText(stone.Ar);
