@@ -6,9 +6,6 @@ import android.support.transition.ChangeImageTransform;
 import android.support.transition.Fade;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.stone.Data;
@@ -20,8 +17,6 @@ import com.stone.fragments.StoneUniformFragment;
 import com.stone.model.Stone;
 import com.stone.model.StoneUnUniform;
 import com.stone.model.StoneUniform;
-
-import static android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
 
 
 public class StoneActivity extends AppCompatActivity {
@@ -81,7 +76,7 @@ public class StoneActivity extends AppCompatActivity {
         //window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         getSupportFragmentManager().beginTransaction()
-                .addSharedElement(stoneFragment.getPhotoView(), "image_stone")
+                .addSharedElement(stoneFragment.getImageView(), "image_stone")
                 .replace(R.id.fragment_root, imageFragment)
                 .addToBackStack(null)
                 .commit();
