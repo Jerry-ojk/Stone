@@ -9,6 +9,9 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +20,17 @@ import android.widget.TextView;
 
 import com.stone.Data;
 import com.stone.R;
+import com.stone.Utils;
 import com.stone.activities.StoneActivity;
 import com.stone.activities.VideoActivity;
 import com.stone.image.ImageManager;
 import com.stone.model.Stone;
 import com.stone.views.PhotoView;
+import com.stone.views.SuperSubSpan;
+
+import java.util.List;
+
+import okhttp3.internal.Util;
 
 @SuppressLint("ValidFragment")
 public abstract class StoneFragment extends Fragment {
@@ -41,6 +50,10 @@ public abstract class StoneFragment extends Fragment {
     private TextView tv_features;
     private ImageView iv_heart;
     private boolean isCollect = false;
+    private String fmt;
+    private String srcfmt;
+    private Spannable str;
+    private List<Integer> se;
 
 
     private StoneActivity stoneActivity;
@@ -97,10 +110,12 @@ public abstract class StoneFragment extends Fragment {
                 stoneActivity.showToast("收藏" + stone.chaName);
                 Data.collectStone(stone, true);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
+                Utils.customToast(stoneActivity,"收藏"+stone.chaName);
             } else {
                 stoneActivity.showToast("取消收藏" + stone.chaName);
                 Data.collectStone(stone, false);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFFFFFF));
+                Utils.customToast(stoneActivity,"取消收藏"+stone.chaName);
             }
         });
 
@@ -137,7 +152,20 @@ public abstract class StoneFragment extends Fragment {
         tv_mic = parent.findViewById(R.id.tv_mic);
         tv_chaName.setText(stone.chaName);
         tv_engName.setText(stone.engName);
-        tv_formula.setText(stone.formula);
+
+        fmt = stone.formula;
+        srcfmt = Utils.fmt2src(fmt);
+        str = new SpannableString(srcfmt);
+        se = Utils.findse(fmt);
+        if(!se.isEmpty()) {
+            int count = 0;
+            for (int i = 0; i < se.size(); i += 2) {
+                str.setSpan(new SuperSubSpan(), se.get(i)-(2*count+1), se.get(i + 1)-(2*count+1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                count += 1;
+            }
+        }
+        tv_formula.setText(str);
+
         tv_crystalSystem.setText(stone.crystalSystem);
         tv_uniformity.setText(stone.uniformity);
         tv_reflectivity.setText(stone.reflectivity);
