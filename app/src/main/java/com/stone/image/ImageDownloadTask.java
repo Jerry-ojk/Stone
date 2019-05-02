@@ -3,7 +3,6 @@ package com.stone.image;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.BufferedOutputStream;
@@ -47,6 +46,7 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
         }
         return null;
     }
+
     private File downloadImage(String url, String path) {
         if (okHttpClient == null) okHttpClient = new OkHttpClient();
         InputStream inputStream = null;
@@ -72,6 +72,7 @@ public class ImageDownloadTask extends AsyncTask<Void, Integer, Bitmap> {
             while ((len = inputStream.read(bytes)) != -1) {
                 bufferedStream.write(bytes, 0, len);
             }
+            bufferedStream.flush();
             File realFile = new File(path);
             if (!realFile.exists() || realFile.delete()) {
                 if (file.renameTo(new File(path))) {

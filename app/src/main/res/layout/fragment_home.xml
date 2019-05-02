@@ -48,16 +48,14 @@
         </FrameLayout>
 
         <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_gravity="end"
             android:id="@+id/iv_menu"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="6dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:background="@drawable/bg_ripple"
             android:padding="6dp"
+            android:scaleType="center"
             android:src="@drawable/ic_more" />
-
     </FrameLayout>
 
 
