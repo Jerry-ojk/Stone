@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.stone.Data;
 import com.stone.R;
@@ -66,14 +65,12 @@ public abstract class StoneFragment extends Fragment {
 
     public StoneFragment(StoneActivity stoneActivity) {
         this.stoneActivity = stoneActivity;
-        //setExitTransition(new Fade());
     }
 
     @Override
     public void onAttach(Context context) {
         stoneActivity = (StoneActivity) context;
         super.onAttach(context);
-        //setExitTransition(new Fade());
     }
 
     public void setStone(Stone stone) {
@@ -83,13 +80,6 @@ public abstract class StoneFragment extends Fragment {
     public PhotoView getPhotoView() {
         return photoView;
     }
-
-    public void setPhotoView(PhotoView photoView) {
-        this.photoView = photoView;
-    }
-
-    private final String tag = "DetailsActivity";
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,7 +91,7 @@ public abstract class StoneFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View parent = inflater.inflate(getViewId(), container, false);
         if (stone == null) {
-            Toast.makeText(getContext(), "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
+            stoneActivity.showToast("传递数据错误，请重试");
             return parent;
         }
 
@@ -117,10 +107,12 @@ public abstract class StoneFragment extends Fragment {
         iv_heart.setOnClickListener(v -> {
             isCollect = !isCollect;
             if (isCollect) {
+                stoneActivity.showToast("收藏" + stone.chaName);
                 Data.collectStone(stone, true);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFF6161));
                 Utils.customToast(stoneActivity,"收藏"+stone.chaName);
             } else {
+                stoneActivity.showToast("取消收藏" + stone.chaName);
                 Data.collectStone(stone, false);
                 iv_heart.setImageTintList(ColorStateList.valueOf(0XFFFFFFFF));
                 Utils.customToast(stoneActivity,"取消收藏"+stone.chaName);
@@ -129,27 +121,22 @@ public abstract class StoneFragment extends Fragment {
 
         photoView = parent.findViewById(R.id.photo_view);
         TextView tv_video = parent.findViewById(R.id.tv_video);
-        tv_video.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (stone.videoUrl != null) {
-                    Intent intent = new Intent(stoneActivity, VideoActivity.class);
-                    intent.putExtra(VideoActivity.VIDEO_NAME, stone.chaName);
-                    intent.putExtra(VideoActivity.VIDEO_URL, stone.videoUrl);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(stoneActivity, "该矿石暂无视频", Toast.LENGTH_SHORT).show();
-                }
+        tv_video.setOnClickListener(v -> {
+            if (stone.videoUrl != null) {
+                Intent intent = new Intent(stoneActivity, VideoActivity.class);
+                intent.putExtra(VideoActivity.VIDEO_NAME, stone.chaName);
+                intent.putExtra(VideoActivity.VIDEO_URL, stone.videoUrl);
+                startActivity(intent);
+            } else {
+                stoneActivity.showToast("暂无该矿石的视频");
             }
         });
-        Log.i("666", "进入详情界面，加载" + stone.chaName);
         ImageManager.loadBigImage(stone, photoView);
-        photoView.setOnClickListener(v -> stoneActivity.showImage(ImageManager.getBitmapFromImageView(photoView)));
-
-        //superPlayerView = parent.findViewById(R.id.video_player);
-        if (stone.videoUrl != null) {
-            //superPlayerView.setVideoPath(stone.videoUrl);
-        }
+        photoView.setOnClickListener((v) -> {
+            if (stone.chaName.equals(ImageManager.name) && ImageManager.bigImageCache != null) {
+                stoneActivity.showImage(ImageManager.getBitmapFromImageView(photoView));
+            }
+        });
 
         tv_chaName = parent.findViewById(R.id.tv_chaName);
         tv_engName = parent.findViewById(R.id.tv_engName);
@@ -188,52 +175,9 @@ public abstract class StoneFragment extends Fragment {
         tv_internalReflection.setText(stone.internalReflection);
         tv_features.setText(stone.features);
         tv_mic.setText(stone.mic);
-
-//        Window window = getWindow();
-//        ChangeImageTransform transform = new ChangeImageTransform();
-//        transform.setDuration(1000);
-//        transform.addTarget(photoView);
-//        //window.setSharedElementEnterTransition(transform);
-//        window.setSharedElementExitTransition(transform);
         return parent;
     }
 
     @LayoutRes
     public abstract int getViewId();
-
-
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        if (superPlayerView != null) {
-//            outState.putLong("During", superPlayerView.getDuration());
-//            outState.putLong("PlayPosition", superPlayerView.getPlayPosition());
-//            outState.putFloat("BufferLength", superPlayerView.getBufferLengthPixel());
-//            superPlayerView.pause();
-//        }
-//    }
-//
-//    @Override
-//    public void onViewStateRestored(@Nullable Bundle bundle) {
-//        super.onViewStateRestored(bundle);
-//        if (bundle != null && superPlayerView != null) {
-//            superPlayerView.setDuration(bundle.getLong("During", 0));
-//            superPlayerView.setPlayPosition(bundle.getLong("PlayPosition", 0));
-//            superPlayerView.setBufferLengthPixel(bundle.getFloat("BufferLength", 0f));
-//        }
-//    }
-//
-//    @Override
-//    public void onDestroyView() {
-//        if (superPlayerView != null)
-//            superPlayerView.pause();
-//        //ImageManager.clearBigImageCache();
-//        super.onDestroyView();
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        if (superPlayerView != null)
-//            superPlayerView.release();
-//        super.onDestroy();
-//    }
 }

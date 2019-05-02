@@ -56,6 +56,11 @@ public class VideoActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+//
+//        videoView.onEvent(JZUserAction.ON_CLICK_PAUSE);
+//        JZMediaManager.pause();
+//        videoView.onStatePause();
+        Jzvd.goOnPlayOnPause();
         super.onPause();
     }
 

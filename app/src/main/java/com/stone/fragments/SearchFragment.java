@@ -177,7 +177,9 @@ public class SearchFragment extends Fragment {
         this.key = key;
         list.clear();
         if (key != null && key.length() > 0) {
-            for (Stone stone : Data.STONE_LIST) {
+            final int size_Stone = Data.STONE_LIST.size();
+            for (int i = 0; i < size_Stone; i++) {
+                Stone stone = Data.STONE_LIST.get(i);
                 if (!hasUni && stone instanceof StoneUniform) {
                     continue;
                 }
@@ -185,8 +187,10 @@ public class SearchFragment extends Fragment {
                     continue;
                 }
                 if (stone.chaName != null && stone.engName != null && stone.formula != null) {
-                    if (stone.chaName.contains(key) || stone.formula.contains(key) || stone.engName.contains(key)) {
-                        list.add(stone);
+                    if (key.equals("*") || stone.chaName.contains(key) || stone.formula.contains(key) || stone.engName.contains(key)) {
+                        if (!isSort || sort(stone)) {
+                            list.add(stone);
+                        }
                     }
                 }
             }
@@ -194,7 +198,28 @@ public class SearchFragment extends Fragment {
         adapter.refresh(list);
     }
 
-//    public void updateCondition() {
+    private boolean sort(Stone stone) {
+        if (ConditionActivity.CONDITION_LIST == null) return true;
+        final int size = ConditionActivity.CONDITION_LIST.size();
+        boolean result = true;
+        for (int j = 0; j < size; j++) {
+            if (!ConditionActivity.CONDITION_LIST.get(j).validate(stone)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void onResume() {
+        if (key != null) {
+            searchAndRefresh(key);
+        }
+        super.onResume();
+    }
+
+    //    public void updateCondition() {
 //        int size = list.size();
 //        for (int i = 0; i < size; i++) {
 //            Stone stone = list.get(i);
