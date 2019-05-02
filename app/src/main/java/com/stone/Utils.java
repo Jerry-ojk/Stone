@@ -33,35 +33,8 @@ import java.util.List;
 
 public class Utils {
 
-    public static void setStatusBarDark(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Window window = activity.getWindow();
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-    }
-
     public static boolean isEmpty(CharSequence str) {
         return str == null || str.length() == 0;
-    }
-
-
-    public static String locateCity(Activity activity) {
-        double longitude;
-        double latitude;
-
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != 0 ||
-                ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != 0) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            return "允许权限后，点击重试";
-        } else {
-            Location location = ((LocationManager) activity.getSystemService(Context.LOCATION_SERVICE))
-                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location == null) return "定位失败";
-            longitude = location.getLongitude();
-            latitude = location.getLatitude();
-            return "经度" + longitude + "纬度" + latitude;
-        }
     }
 
     public static Bitmap blurBitmap(Context context, Bitmap bitmap, float radius) {

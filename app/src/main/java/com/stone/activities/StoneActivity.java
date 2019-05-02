@@ -34,10 +34,6 @@ public class StoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stone);
-        Window window = this.getWindow();
-        window.setStatusBarColor(0xffffffff);
-        window.getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
         int index = getIntent().getIntExtra("index", -1);
         if (index != -1) {
             stone = Data.STONE_LIST.get(index);

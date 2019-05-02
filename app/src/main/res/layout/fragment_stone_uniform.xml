@@ -19,12 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--<com.stone.player.SuperPlayerView-->
-            <!--android:id="@+id/video_player"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
-
-            <com.stone.views.PhotoView
+            <ImageView
                 android:id="@+id/photo_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

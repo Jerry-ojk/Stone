@@ -2,7 +2,6 @@ package com.stone.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Outline;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
@@ -10,7 +9,6 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,14 +31,30 @@ import java.util.List;
 public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Stone> data;
 
-    public static int TYPE_HEADER = 0;
-    public static int TYPE_ITEM = 1;
     private Context context;
     private String fmt;
     private String srcfmt;
     private Spannable str;
     private List<Integer> se;
     private View.OnClickListener listener;
+
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
+        ImageView image;
+        TextView name;
+        TextView che_name;
+        TextView company;
+        TextView des;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.item_image);
+            name = itemView.findViewById(R.id.item_name);
+            che_name = itemView.findViewById(R.id.item_che_name);
+            des = itemView.findViewById(R.id.item_des);
+            company = itemView.findViewById(R.id.item_company);
+            //type = itemView.findViewById(R.id.item_type);
+        }
+    }
 
     public StoneListAdapter(Context context, ArrayList<Stone> data) {
         this.data = data;
@@ -61,18 +75,9 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder;
-        if (viewType == TYPE_ITEM) {
-            View item = LayoutInflater.from(context).inflate(R.layout.item_stone, parent, false);
-            //ImageView imageView= item.findViewById(R.id.item_image);
-            //imageView.getDrawable().getIntrinsicHeight();
-            item.setOnClickListener(listener);
-            holder = new ItemViewHolder(item);
-        } else {
-            View header = LayoutInflater.from(context).inflate(R.layout.header_layout, parent, false);
-            holder = new HeaderViewHolder(header, context);
-        }
-        return holder;
+        View item = LayoutInflater.from(context).inflate(R.layout.item_stone, parent, false);
+        item.setOnClickListener(listener);
+        return new ItemViewHolder(item);
     }
 
     @Override
@@ -81,17 +86,16 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             Stone item = data.get(position);
             ItemViewHolder itemHolder = ((ItemViewHolder) holder);
             itemHolder.itemView.setTag(item.id);
-//            itemHolder.name.setText(item.chaName + "  " + item.formula);
-            itemHolder.name.setText(item.chaName+"  ");
+            itemHolder.name.setText(item.chaName + "  ");
 
             fmt = item.formula;
             srcfmt = Utils.fmt2src(fmt);
             str = new SpannableString(srcfmt);
             se = Utils.findse(fmt);
-            if(!se.isEmpty()) {
+            if (!se.isEmpty()) {
                 int count = 0;
                 for (int i = 0; i < se.size(); i += 2) {
-                    str.setSpan(new SuperSubSpan(), se.get(i)-(2*count+1), se.get(i + 1)-(2*count+1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    str.setSpan(new SuperSubSpan(), se.get(i) - (2 * count + 1), se.get(i + 1) - (2 * count + 1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                     count += 1;
                 }
             }
@@ -102,11 +106,6 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             if (MainActivity.access)
                 ImageManager.loadThumbnail(item, itemHolder.image);
         }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return TYPE_ITEM;
     }
 
     @Override
@@ -126,68 +125,5 @@ public class StoneListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             itemHolder.image.setTag(null);
         }
     }
-
-    static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        TextView company;
-        TextView project;
-        TextView thing;
-        TextView people;
-
-
-        public HeaderViewHolder(View itemView, Context context) {
-            super(itemView);
-            company = itemView.findViewById(R.id.home_tv_company);
-            project = itemView.findViewById(R.id.home_tv_project);
-            thing = itemView.findViewById(R.id.home_tv_thing);
-            people = itemView.findViewById(R.id.home_tv_people);
-
-            ViewOutlineProvider outline = new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    view.setClipToOutline(true);
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), 30);
-                }
-            };
-            View.OnClickListener listener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    Intent intent = new Intent(context, ProjectActivity.class);
-//                    intent.putExtra("name", ((TextView) v).getText());
-//                    context.startActivity(intent);
-                }
-            };
-            company.setOnClickListener(listener);
-            project.setOnClickListener(listener);
-            thing.setOnClickListener(listener);
-            company.setOnClickListener(listener);
-            people.setOnClickListener(listener);
-
-            company.setOutlineProvider(outline);
-            project.setOutlineProvider(outline);
-            thing.setOutlineProvider(outline);
-            people.setOutlineProvider(outline);
-        }
-    }
-
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView name;
-        TextView che_name;
-        TextView company;
-        TextView des;
-
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.item_image);
-            name = itemView.findViewById(R.id.item_name);
-            che_name = itemView.findViewById(R.id.item_che_name);
-            des = itemView.findViewById(R.id.item_des);
-            company = itemView.findViewById(R.id.item_company);
-            //type = itemView.findViewById(R.id.item_type);
-        }
-    }
-
-
-
 
 }
