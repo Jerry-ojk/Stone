@@ -27,8 +27,8 @@ public class ImageManager {
     private static String bigImageDir = IMAGE_ROOT + "image";
     private static String identifyDir = IMAGE_ROOT + "identify";
     private static ArrayCache thumbnailCache = new ArrayCache(56);
-    private static Bitmap bigImageCache = null;
-    private static String name = null;
+    public static Bitmap bigImageCache = null;
+    public static String name = null;
     public static final int TYPE_THUMBNAIL = 0;
     public static final int TYPE_BIGIMAGE = 1;
 
@@ -61,7 +61,7 @@ public class ImageManager {
                                 bmobFile = picture.video;
                                 if (bmobFile != null) {
                                     stone.videoUrl = bmobFile.getUrl();
-                                    Log.i("666", stone.chaName + stone.videoUrl);
+                                    //Log.i("666", stone.chaName + stone.videoUrl);
                                 }
                             }
                         }

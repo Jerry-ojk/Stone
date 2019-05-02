@@ -12,8 +12,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="start"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="6dp"
+        android:background="@drawable/bg_ripple"
         android:scaleType="center"
         android:src="@drawable/arrow_gray" />
 
@@ -32,7 +31,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="end"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:background="@drawable/bg_ripple"
         android:scaleType="center"
         android:src="@drawable/ic_heart" />
 </FrameLayout>

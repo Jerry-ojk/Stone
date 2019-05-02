@@ -28,6 +28,7 @@ public class StoneActivity extends AppCompatActivity {
     private StoneFragment stoneFragment;
     private ImageFragment imageFragment;
     private Stone stone;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class StoneActivity extends AppCompatActivity {
         if (stoneFragment != null) {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_root, stoneFragment).commit();
         } else {
-            Toast.makeText(this, "传递数据错误，请重试", Toast.LENGTH_SHORT).show();
+            showToast("传递数据错误，请重试");
         }
     }
 
@@ -88,6 +89,17 @@ public class StoneActivity extends AppCompatActivity {
                 .replace(R.id.fragment_root, imageFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void showToast(String message) {
+        if (toast == null) {
+            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            //toast.cancel();
+            toast.setText(message);
+            toast.show();
+        }
     }
 
     public void dismissImage() {
