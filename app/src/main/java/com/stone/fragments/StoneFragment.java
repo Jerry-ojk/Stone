@@ -162,14 +162,15 @@ public abstract class StoneFragment extends Fragment {
         tv_engName = parent.findViewById(R.id.tv_engName);
         tv_formula = parent.findViewById(R.id.tv_formula);
         tv_crystalSystem = parent.findViewById(R.id.tv_crystal);
+        tv_internalReflection = parent.findViewById(R.id.tv_internalReflection);
         tv_uniformity = parent.findViewById(R.id.tv_uniformity);
         tv_hardness = parent.findViewById(R.id.tv_hardness);
         tv_reflectivity = parent.findViewById(R.id.tv_reflectivity);
         tv_reflectColor = parent.findViewById(R.id.tv_reflectColor);
         tv_DRr = parent.findViewById(R.id.tv_DRr);
-        tv_internalReflection = parent.findViewById(R.id.tv_internalReflection);
         tv_features = parent.findViewById(R.id.tv_features);
         tv_mic = parent.findViewById(R.id.tv_mic);
+
         tv_chaName.setText(stone.chaName);
         tv_engName.setText(stone.engName);
 

@@ -27,22 +27,30 @@
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" />-->
 
-            <com.stone.views.PhotoView
-                android:id="@+id/photo_view"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:adjustViewBounds="true"
-                android:transitionName="image" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/tag_video"
-                android:text="观看视频" />
+                <com.stone.views.PhotoView
+                    android:id="@+id/photo_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:adjustViewBounds="true"
+                    android:transitionName="image" />
+
+                <TextView
+                    android:id="@+id/tv_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_video"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="观看视频" />
+            </FrameLayout>
             <!--<ImageView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -52,7 +60,7 @@
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" />-->
             <LinearLayout
-                android:id="@+id/first-card"
+                android:id="@+id/first_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/card_bg"
@@ -67,7 +75,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="中文名称：" />
-
                 <TextView
                     android:id="@+id/tv_chaName"
                     style="@style/StoneTextStyle"
@@ -81,23 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="英文名称：" />
-
                 <TextView
                     android:id="@+id/tv_engName"
-                    style="@style/StoneTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true" />
-
-                <TextView
-                    android:id="@+id/tv_crystal_tag"
-                    style="@style/TagStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="矿物晶系：" />
-
-                <TextView
-                    android:id="@+id/tv_crystal"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,11 +101,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="化学式：" />
-
                 <TextView
                     android:id="@+id/tv_formula"
                     style="@style/StoneTextStyle"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/tv_crystal_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="矿物晶系：" />
+                <TextView
+                    android:id="@+id/tv_crystal"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true" />
 
@@ -123,8 +127,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="内反射：" />
-
-
                 <TextView
                     android:id="@+id/tv_internalReflection"
                     style="@style/StoneTextStyle"
@@ -137,7 +139,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="相符Ps：" />
-
                 <TextView
                     android:id="@+id/tv_not_Ps"
                     style="@style/StoneTextStyle"
@@ -150,7 +151,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="旋向Rs：" />
-
                 <TextView
                     android:id="@+id/tv_not_Rs"
                     style="@style/StoneTextStyle"
@@ -163,7 +163,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="非均质视旋转角Ar：" />
-
                 <TextView
                     android:id="@+id/tv_not_Ar"
                     style="@style/StoneTextStyle"
@@ -176,12 +175,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="非均质视旋转色散DAr：" />
-
                 <TextView
                     android:id="@+id/tv_not_DAr"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -201,7 +200,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="均非性：" />
-
                 <TextView
                     android:id="@+id/tv_uniformity"
                     style="@style/StoneTextStyle"
@@ -214,7 +212,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="硬度：" />
-
                 <TextView
                     android:id="@+id/tv_hardness"
                     style="@style/StoneTextStyle"
@@ -228,7 +225,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="反射率：" />
-
                 <TextView
                     android:id="@+id/tv_reflectivity"
                     style="@style/StoneTextStyle"
@@ -241,9 +237,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="反射色：" />
-
                 <TextView
                     android:id="@+id/tv_reflectColor"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_DRr_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="反射视旋转色散DRr：" />
+                <TextView
+                    android:id="@+id/tv_DRr"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -254,26 +261,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="反射视旋转色散DAR：" />
-
                 <TextView
                     android:id="@+id/tv_DAR"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_not_DAR_tag"-->
-                    <!--style="@style/TagStyle"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="反射视旋转色散DAR：" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/tv_not_DAR"-->
-                    <!--style="@style/StoneTextStyle"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
 
                 <TextView
                     android:id="@+id/tv_not_dRColor_tag"
@@ -281,22 +273,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="双反射及反射多色性：" />
-
                 <TextView
                     android:id="@+id/tv_not_dRColor"
-                    style="@style/StoneTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tv_features_tag"
-                    style="@style/TagStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="矿物成因产状形态特征：" />
-
-                <TextView
-                    android:id="@+id/tv_features"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -307,15 +285,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="主要鉴定特征：" />
-
                 <TextView
                     android:id="@+id/tv_mic"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_features_tag"
+                    style="@style/TagStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="矿物成因产状形态特征：" />
+                <TextView
+                    android:id="@+id/tv_features"
+                    style="@style/StoneTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

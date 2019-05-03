@@ -13,8 +13,8 @@ public class StoneUnUniform extends Stone {
     //非均质视旋转色散DAr
     public String DAr;
 
-    //反射视旋转色散DRr
-    public String DRr;
+    //反射视旋转色散DAR
+    public String DAR;
 
     //双反射及反射多色性
     public String doubleReflectColor;
@@ -43,7 +43,7 @@ public class StoneUnUniform extends Stone {
             Rs = lines[11];
             Ps = lines[12];
             DRr = lines[13];
-            DRr = lines[14];
+            DAR = lines[14];
             internalReflection = lines[15];
             features = lines[16];
             mic = lines[17];
