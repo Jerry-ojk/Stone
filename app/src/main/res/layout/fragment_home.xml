@@ -7,12 +7,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/colorPrimary"
-        android:elevation="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="68dp"
+        android:background="@drawable/bg_gradual_change"
+        android:elevation="2dp">
 
 
         <FrameLayout
@@ -22,6 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="48dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_search"
             android:orientation="horizontal">
 
@@ -55,6 +53,7 @@
             android:background="@drawable/bg_ripple"
             android:padding="6dp"
             android:scaleType="center"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_more" />
     </FrameLayout>
 
@@ -64,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E5DCDCDC"
-        android:layout_marginTop="56dp">
+        android:layout_marginTop="68dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/home_rec"

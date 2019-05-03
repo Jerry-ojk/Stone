@@ -64,7 +64,7 @@ public class TextAdapter extends RecyclerView.Adapter<TextViewHolder> {
     public void onBindViewHolder(TextViewHolder holder, int position) {
         Stone stone = list.get(position);
         holder.itemView.setTag(stone.id);
-        holder.textView.setText(stone.chaName + "  " + stone.engName + "  " + stone.formula);
+        holder.textView.setText(stone.chaName + "  " + stone.engName);
     }
 
     @Override

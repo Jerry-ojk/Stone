@@ -67,6 +67,9 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:layoutDirection="rtl"
+            android:theme="@style/My_CheckBox"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
             android:text="均质" />
 
         <CheckBox
@@ -76,7 +79,10 @@
             android:layout_marginEnd="16dp"
             android:checked="true"
             android:layoutDirection="rtl"
-            android:text="非均质" />
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            android:text="非均质"
+            android:theme="@style/My_CheckBox"/>
 
         <CheckBox
             android:id="@+id/cb_sort"
@@ -84,6 +90,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layoutDirection="rtl"
+            android:textSize="15sp"
+            android:theme="@style/My_CheckBox"
+            android:textColor="@color/textColor"
             android:text="筛选" />
 
     </LinearLayout>
@@ -94,5 +103,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/card_bg"/>
 </LinearLayout>

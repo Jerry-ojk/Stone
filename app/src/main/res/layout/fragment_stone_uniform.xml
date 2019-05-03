@@ -72,6 +72,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="中文名称：" />
                 <TextView
                     android:id="@+id/tv_chaName"
@@ -141,7 +142,8 @@
                     android:id="@+id/tv_uni_Rr"
                     style="@style/StoneTextStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
 
             </LinearLayout>
 
@@ -160,7 +162,8 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="均非性：" />
+                android:layout_marginTop="8dp"
+                android:text="均非性 " />
             <TextView
                 android:id="@+id/tv_uniformity"
                 style="@style/StoneTextStyle"
@@ -173,7 +176,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="硬度：" />
+                android:text="硬度 " />
             <TextView
                 android:id="@+id/tv_hardness"
                 style="@style/StoneTextStyle"
@@ -186,7 +189,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="反射率：" />
+                android:text="反射率 " />
             <TextView
                 android:id="@+id/tv_reflectivity"
                 style="@style/StoneTextStyle"
@@ -198,7 +201,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="反射色：" />
+                android:text="反射色 " />
             <TextView
                 android:id="@+id/tv_reflectColor"
                 style="@style/StoneTextStyle"
@@ -210,7 +213,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="反射视旋转色散：" />
+                android:text="反射视旋转色散 " />
             <TextView
                 android:id="@+id/tv_DRr"
                 style="@style/StoneTextStyle"
@@ -222,7 +225,7 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="矿物成因产状形态特征：" />
+                android:text="矿物成因产状形态特征 " />
             <TextView
                 android:id="@+id/tv_features"
                 style="@style/StoneTextStyle"
@@ -234,12 +237,13 @@
                 style="@style/TagStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="主要鉴定特征：" />
+                android:text="主要鉴定特征 " />
             <TextView
                 android:id="@+id/tv_mic"
                 style="@style/StoneTextStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
 
