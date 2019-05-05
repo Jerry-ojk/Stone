@@ -33,5 +33,5 @@
         android:layout_gravity="end"
         android:background="@drawable/bg_ripple"
         android:scaleType="center"
-        android:src="@drawable/ic_heart" />
+        android:src="@drawable/hollow_heart" />
 </FrameLayout>

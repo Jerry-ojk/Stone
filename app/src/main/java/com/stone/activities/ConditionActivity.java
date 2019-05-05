@@ -1,7 +1,9 @@
 package com.stone.activities;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Spinner;
 
 import com.stone.R;
@@ -36,8 +38,14 @@ public class ConditionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
-        findViewById(R.id.iv_back).setOnClickListener((view) -> finish());
 
+        View decorView = getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(option);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        findViewById(R.id.iv_back).setOnClickListener((view) -> finish());
         sp_uniform = findViewById(R.id.sp_uniform);
         sp_uniform.setAdapter(new ConditionAdapter(new String[]{"非均性：", "强", "弱"}));
 

@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="中文名称：" />
+                    android:text="中文名称 " />
                 <TextView
                     android:id="@+id/tv_chaName"
                     style="@style/StoneTextStyle"
@@ -88,7 +88,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="英文名称：" />
+                    android:text="英文名称 " />
                 <TextView
                     android:id="@+id/tv_engName"
                     style="@style/StoneTextStyle"
@@ -101,7 +101,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="化学式：" />
+                    android:text="化学式 " />
                 <TextView
                     android:id="@+id/tv_formula"
                     style="@style/StoneTextStyle"
@@ -114,7 +114,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="矿物晶系：" />
+                    android:text="矿物晶系 " />
                 <TextView
                     android:id="@+id/tv_crystal"
                     style="@style/StoneTextStyle"
@@ -127,7 +127,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="内反射：" />
+                    android:text="内反射 " />
                 <TextView
                     android:id="@+id/tv_internalReflection"
                     style="@style/StoneTextStyle"
@@ -139,7 +139,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="相符Ps：" />
+                    android:text="相符Ps " />
                 <TextView
                     android:id="@+id/tv_not_Ps"
                     style="@style/StoneTextStyle"
@@ -151,7 +151,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="旋向Rs：" />
+                    android:text="旋向Rs " />
                 <TextView
                     android:id="@+id/tv_not_Rs"
                     style="@style/StoneTextStyle"
@@ -163,7 +163,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="非均质视旋转角Ar：" />
+                    android:text="非均质视旋转角Ar " />
                 <TextView
                     android:id="@+id/tv_not_Ar"
                     style="@style/StoneTextStyle"
@@ -175,7 +175,7 @@
                     style="@style/TagStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="非均质视旋转色散DAr：" />
+                    android:text="非均质视旋转色散DAr " />
                 <TextView
                     android:id="@+id/tv_not_DAr"
                     style="@style/StoneTextStyle"

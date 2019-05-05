@@ -9,7 +9,7 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/colorPrimary"
+        android:background="#fff"
         android:elevation="2dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:scaleType="center"
-            android:src="@drawable/ic_arrow_back" />
+            android:src="@drawable/arrow_gray" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,8 +31,8 @@
             android:layout_marginStart="72dp"
             android:singleLine="true"
             android:text="设置"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
     </FrameLayout>
 
     <TextView

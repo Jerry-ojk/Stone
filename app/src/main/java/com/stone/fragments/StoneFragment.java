@@ -126,7 +126,7 @@ public abstract class StoneFragment extends Fragment {
             } else {
                 Data.collectStone(stone, false);
 //                iv_heart.setImageTintList(ColorStateList.valueOf(0xaa8b8b8b));
-                iv_heart.setImageResource(R.drawable.ic_heart);
+                iv_heart.setImageResource(R.drawable.hollow_heart);
                 Toast.makeText(stoneActivity, "取消收藏"+stone.chaName, Toast.LENGTH_SHORT).show();
             }
         });

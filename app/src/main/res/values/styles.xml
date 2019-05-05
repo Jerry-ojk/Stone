@@ -5,8 +5,19 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="autoCompleteTextViewStyle">@style/AppAutoCompleteTextView</item>
+    </style>
+
+    <!--修改searchView字体颜色、大小-->
+    <style name="AppAutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textAppearance">@style/AutoCompleteTextAppearance</item>
+    </style>
+
+    <style name="AutoCompleteTextAppearance" parent="android:TextAppearance">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="My_CheckBox" parent="@android:style/Widget.Material.CompoundButton.CheckBox">
